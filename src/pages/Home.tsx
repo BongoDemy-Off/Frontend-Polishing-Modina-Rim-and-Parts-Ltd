@@ -117,51 +117,51 @@ export default function Home() {
         <div className="relative z-10 flex flex-col lg:flex-row min-h-[100dvh]">
           
           {/* LEFT — Text Content (45%) */}
-          <div className="w-full lg:w-[45%] flex flex-col justify-center px-8 sm:px-16 xl:px-24 pt-[120px] pb-8 lg:pb-0 lg:py-0 shrink-0 min-h-[45vh] lg:min-h-[100dvh]">
+          <div className="w-full lg:w-[45%] flex flex-col justify-center px-6 sm:px-16 xl:px-24 pt-[152px] sm:pt-[120px] pb-8 lg:pb-0 lg:py-0 shrink-0 min-h-[45vh] lg:min-h-[100dvh]">
             <motion.div
               initial="hidden"
               animate="visible"
               variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.2 } } }}
-              className="flex flex-col items-start w-full max-w-xl lg:mt-[72px]"
+              className="inline-flex flex-col items-start w-full sm:w-max lg:mt-[72px]"
             >
-              {/* Hero Title — ENGINEERING / EXCELLENCE. */}
+              {/* Hero Title — ENGINEERING / EXCELLENCE */}
               <motion.h1
                 variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
-                className="font-display font-extrabold text-modina-heading leading-[0.95] tracking-[-0.03em] mb-7"
-                style={{ fontSize: 'clamp(48px, 6vw, 84px)' }}
+                className="font-display font-black text-modina-heading leading-[0.95] tracking-tight mb-7 -ml-[3px] w-full"
+                style={{ fontSize: 'clamp(40px, 12.5vw, 84px)' }}
               >
-                <span className="block uppercase">{t('home.hero_title_1')}</span>
-                <span className="block uppercase text-modina-red italic">{t('home.hero_title_2')}.</span>
+                <span className="block uppercase break-words sm:whitespace-nowrap text-left">{t('home.hero_title_1')}</span>
+                <span className="block uppercase text-modina-red break-words sm:whitespace-nowrap text-left">{t('home.hero_title_2')}</span>
               </motion.h1>
 
               {/* Hero Body */}
               <motion.p
                 variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }}
-                className="text-modina-muted leading-relaxed mb-10 max-w-md"
+                className="text-modina-muted leading-relaxed mb-10 max-w-lg text-left whitespace-normal"
                 style={{ fontSize: 'clamp(15px, 1.2vw, 17px)' }}
               >
-                Premium automotive components manufactured in Bangladesh. Trusted by industry, Delivered worldwide.
+                Premium automotive components manufactured in Bangladesh. Trusted by industry leaders, Delivered nationwide.
               </motion.p>
 
               {/* CTAs */}
               <motion.div
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }}
-                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto"
+                className="flex flex-col sm:flex-row items-stretch gap-4 w-full max-w-lg"
               >
                 <Link
                   to="/products"
-                  className="px-7 py-3.5 bg-modina-red text-white text-sm font-bold uppercase tracking-[0.15em] rounded-md hover:bg-modina-red-dark transition-all duration-300 flex items-center justify-center gap-2.5 group shadow-[0_4px_16px_rgba(229,37,37,0.25)] hover:shadow-[0_8px_24px_rgba(229,37,37,0.35)] hover:-translate-y-0.5"
+                  className="flex-1 px-7 py-3.5 bg-modina-red text-white text-sm font-bold uppercase tracking-[0.15em] rounded-md hover:bg-modina-red-dark transition-all duration-300 flex items-center justify-center gap-2.5 group shadow-[0_4px_16px_rgba(229,37,37,0.25)] hover:shadow-[0_8px_24px_rgba(229,37,37,0.35)] hover:-translate-y-0.5"
                 >
                   Explore Catalog
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
-                <a
-                  href="tel:+8801234567890"
-                  className="px-7 py-3.5 bg-white border-2 border-modina-heading/15 text-modina-heading text-sm font-bold uppercase tracking-[0.15em] rounded-md hover:border-modina-red hover:text-modina-red transition-all duration-300 flex items-center justify-center gap-2.5 group"
+                <Link
+                  to="/contact"
+                  className="flex-1 px-7 py-3.5 bg-white border-2 border-modina-heading/15 text-modina-heading text-sm font-bold uppercase tracking-[0.15em] rounded-md hover:border-modina-red hover:text-modina-red transition-all duration-300 flex items-center justify-center gap-2.5 group"
                 >
-                  Talk to Sales
+                  {t('common.contact_us')}
                   <UserRound className="w-4 h-4 text-modina-muted group-hover:text-modina-red transition-colors duration-300" />
-                </a>
+                </Link>
               </motion.div>
             </motion.div>
           </div>
@@ -238,37 +238,35 @@ export default function Home() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute bottom-0 left-0 right-0 z-20 border-t border-modina-divider bg-white/90 backdrop-blur-md"
+          className="absolute bottom-0 left-0 right-0 z-20 border-t border-modina-border bg-white shadow-design-md"
         >
           <div className="container-premium">
-            <div className="flex items-center justify-start gap-6 sm:gap-10 lg:gap-16 py-4 lg:py-5 overflow-x-auto scrollbar-hide">
+            <div className="flex items-center justify-start py-5 lg:justify-center lg:py-6 overflow-x-auto scrollbar-hide">
               {[
                 { icon: ShieldCheck, value: 'ISO 9001:2015', label: 'CERTIFIED' },
                 { icon: CalendarClock, value: '15+', label: 'YEARS EXPERIENCE' },
                 { icon: Package, value: '21+', label: 'PRODUCTS' },
-                { icon: GlobeIcon, value: 'EXPORT TO', label: '3+ COUNTRIES' },
+                { icon: GlobeIcon, value: 'DISTRIBUTING TO', label: 'ALL OVER THE COUNTRY' },
               ].map((stat, idx) => (
-                <div key={idx} className="flex items-center gap-3 shrink-0">
+                <div key={idx} className="flex items-center gap-3 shrink-0 px-6 sm:px-10 lg:px-14 border-l border-modina-divider first:border-l-0 first:pl-0 last:pr-0">
                   <div className="w-9 h-9 rounded-lg bg-modina-red/8 flex items-center justify-center shrink-0">
                     <stat.icon className="w-[18px] h-[18px] text-modina-red" strokeWidth={1.8} />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-modina-heading font-display font-extrabold text-sm tracking-tight leading-none">{stat.value}</span>
-                    <span className="text-modina-muted text-[10px] font-bold tracking-[0.15em] uppercase mt-0.5">{stat.label}</span>
+                    <span className="text-modina-heading font-display font-bold text-base tracking-tight leading-none">{stat.value}</span>
+                    <span className="text-modina-muted text-xs font-bold tracking-[0.12em] uppercase mt-0.5">{stat.label}</span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          {/* Red accent line at the very bottom */}
-          <div className="h-[3px] bg-gradient-to-r from-modina-red via-modina-red to-transparent" />
         </motion.div>
       </section>
 
       {/* ═══════════════════════════════════════════════════
           2. ABOUT TEASER — Two Column
       ═══════════════════════════════════════════════════ */}
-      <section className="section-py bg-modina-bg-alt border-t border-modina-divider">
+      <section className="section-py bg-modina-bg-alt">
         <div className="container-premium">
           <motion.div
             initial="hidden"
@@ -282,7 +280,7 @@ export default function Home() {
                 variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
                 className="text-modina-red text-xs font-bold tracking-widest uppercase mb-4"
               >
-                — About Modina
+                — About Modina Rim & Parts Ltd.
               </motion.p>
               <motion.h2
                 variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } } }}
@@ -306,16 +304,16 @@ export default function Home() {
               </motion.div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-8 mt-14 border-t border-modina-border pt-10">
+              <div className="grid grid-cols-2 gap-x-6 gap-y-8 mt-14 border-t border-modina-border pt-10 sm:grid-cols-3 sm:gap-8">
                 {[
                   { target: 20, suffix: '+', label: t('home.stats_years') },
-                  { target: 50, suffix: '+', label: t('home.stats_clients') },
-                  { target: 15, suffix: '', label: t('home.stats_products') }
+                  { target: 300, suffix: '+', label: t('home.stats_clients') },
+                  { target: 100, suffix: '+', label: t('home.stats_products') }
                 ].map((stat, idx) => (
                   <motion.div
                     key={idx}
                     variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
-                    className="flex flex-col gap-1.5"
+                    className="flex flex-col gap-1.5 items-start"
                   >
                     <span className="font-display font-bold text-modina-red" style={{ fontSize: 'clamp(32px, 3vw, 48px)' }}>
                       <AnimatedCounter target={stat.target} suffix={stat.suffix} />
@@ -356,7 +354,7 @@ export default function Home() {
                     <Settings className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-white font-display font-bold text-sm">{t('about.video_title')}</h4>
+                    <h4 className="text-white font-display font-bold text-sm">Using modern technology</h4>
                     <p className="text-white/70 text-xs mt-0.5">ISO 9001:2015 Certified</p>
                   </div>
                 </div>
@@ -399,7 +397,7 @@ export default function Home() {
                 {t('home.about_body_2')}
               </motion.p>
             </div>
-            <motion.div variants={{ hidden: { opacity: 0, x: 16 }, visible: { opacity: 1, x: 0, transition: { duration: 0.5 } } }}>
+            <motion.div variants={{ hidden: { opacity: 0, x: 16 }, visible: { opacity: 1, x: 0, transition: { duration: 0.5 } } }} className="md:mb-2">
               <Link to="/products" className="inline-flex items-center gap-3 text-modina-muted font-semibold text-sm hover:text-modina-red transition-colors duration-200 group">
                 Full Range
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
@@ -421,7 +419,7 @@ export default function Home() {
               >
                 <motion.div
                   variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } } }}
-                  className="group relative bg-[#111] cursor-pointer overflow-hidden rounded-none border border-[#222] shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-hover)] transition-all duration-300 ease-in-out hover:-translate-y-1 h-full"
+                  className="group relative bg-[#111] cursor-pointer overflow-hidden rounded-[12px] border border-[#222] shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-hover)] transition-all duration-300 ease-in-out hover:-translate-y-1 h-full"
                 >
                   <img
                     src={category.img}
@@ -469,7 +467,7 @@ export default function Home() {
               variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
               className="text-modina-red text-xs font-bold tracking-widest uppercase mb-4"
             >
-              — Quality &amp; Trust
+              Quality &amp; Trust
             </motion.p>
             <motion.h2
               variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } } }}
@@ -536,7 +534,7 @@ export default function Home() {
                   variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}
                   className="flex items-center gap-3 mb-5"
                 >
-                  <div className="w-8 h-0.5 bg-modina-red" />
+                  <div className="w-8 h-0.5 bg-modina-red shrink-0" />
                   <span className="text-modina-red text-xs font-bold tracking-widest uppercase">{t('footer.resources_label')}</span>
                 </motion.div>
                 <motion.h2
@@ -578,7 +576,7 @@ export default function Home() {
                   <motion.div
                     key={idx}
                     variants={{ hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: idx * 0.08 } } }}
-                    className="card-premium p-5 flex items-center gap-4 cursor-pointer group"
+                    className="card-premium p-5 flex items-start gap-4 cursor-pointer group"
                   >
                     <div className="w-11 h-11 rounded-lg bg-modina-red/10 flex items-center justify-center group-hover:bg-modina-red transition-all duration-300 ease-in-out shrink-0">
                       <Download className="w-4 h-4 text-modina-red group-hover:text-white transition-colors duration-300" />
@@ -587,7 +585,7 @@ export default function Home() {
                       <span className="text-sm font-bold text-modina-heading group-hover:text-modina-red transition-colors duration-200">{file.name}</span>
                       <span className="text-xs text-modina-subtle font-mono mt-0.5">{file.type} · {file.size}</span>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-modina-subtle opacity-0 group-hover:opacity-100 group-hover:text-modina-red transition-all duration-200" />
+                    <ArrowRight className="w-4 h-4 text-modina-subtle opacity-0 group-hover:opacity-100 group-hover:text-modina-red transition-all duration-200 self-center shrink-0" />
                   </motion.div>
                 ))}
               </div>
@@ -631,13 +629,13 @@ export default function Home() {
               {/* Prev/Next */}
               <button
                 onClick={prevTestimonial}
-                className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-modina-border flex items-center justify-center text-modina-muted hover:text-modina-red hover:border-modina-red transition-all duration-200 ease-in-out z-10 bg-white"
+                className="absolute left-0 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-modina-border flex items-center justify-center text-modina-muted hover:text-modina-red hover:border-modina-red transition-all duration-200 ease-in-out z-10 bg-white"
               >
                 <ChevronLeft className="w-5 h-5" strokeWidth={1.5} />
               </button>
               <button
                 onClick={nextTestimonial}
-                className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-modina-border flex items-center justify-center text-modina-muted hover:text-modina-red hover:border-modina-red transition-all duration-200 ease-in-out z-10 bg-white"
+                className="absolute right-0 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-modina-border flex items-center justify-center text-modina-muted hover:text-modina-red hover:border-modina-red transition-all duration-200 ease-in-out z-10 bg-white"
               >
                 <ChevronRight className="w-5 h-5" strokeWidth={1.5} />
               </button>
@@ -652,11 +650,11 @@ export default function Home() {
                   className="flex flex-col items-center text-center"
                 >
                   <Quote className="w-8 h-8 text-modina-border mb-4 fill-modina-border/20" />
-                  <p className="text-modina-heading font-display text-lg md:text-xl font-medium leading-relaxed max-w-xl px-8 md:px-12 mb-6">
+                  <p className="text-modina-heading font-display text-lg md:text-xl font-medium leading-relaxed max-w-xl mb-6">
                     "{testimonials[activeTestimonial].quote}"
                   </p>
                   
-                  <div className="flex items-center gap-4 mt-2">
+                  <div className="flex items-center gap-4 mt-2 justify-center">
                     <div className="w-12 h-12 rounded-full overflow-hidden border border-modina-border shrink-0">
                       <img
                         src={testimonials[activeTestimonial].image}
@@ -665,7 +663,7 @@ export default function Home() {
                         referrerPolicy="no-referrer"
                       />
                     </div>
-                    <div className="text-left">
+                    <div className="text-center">
                       <h4 className="font-bold text-modina-heading text-sm">{testimonials[activeTestimonial].author}</h4>
                       <p className="text-modina-red text-[10px] font-bold tracking-widest uppercase mt-0.5">{testimonials[activeTestimonial].company}</p>
                     </div>
@@ -708,10 +706,10 @@ export default function Home() {
             </motion.p>
             <motion.h2
               variants={{ hidden: { opacity: 0, scale: 0.95, y: 24 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
-              className="font-display font-bold text-white mb-6 tracking-tight leading-tight"
+              className="font-display font-bold text-white mb-6 tracking-tight leading-tight [text-wrap:balance]"
               style={{ fontSize: 'clamp(36px, 5vw, 64px)' }}
             >
-              Partner with <br />
+              Partner with{' '}
               <span className="text-modina-red">Modina Rim &amp; Parts</span>
             </motion.h2>
             <motion.p

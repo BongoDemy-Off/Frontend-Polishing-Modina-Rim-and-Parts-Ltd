@@ -50,7 +50,7 @@ export default function News() {
   }, [activeCategory, searchQuery]);
 
   return (
-    <div className="min-h-screen bg-modina-bg text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-modina-bg text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>News &amp; Events | Modina Rim &amp; Parts Ltd.</title>
         <meta name="description" content="Latest news, product launches, industry updates, and events from Modina Rim & Parts Ltd. — Bangladesh's ISO-certified automotive component manufacturer." />
@@ -69,7 +69,7 @@ export default function News() {
 
         <div className="w-24 h-[2px] bg-modina-red mx-auto mb-10" />
 
-        <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
           {letters.map((letter, i) => (
             letter === " " ? (
               <span key={i} className="w-[0.3em]">&nbsp;</span>
@@ -104,18 +104,18 @@ export default function News() {
 
         <hr className="w-full max-w-md border-modina-divider mx-auto mt-10 mb-10" />
 
-        <div className="flex items-center justify-center gap-0">
-          <div className="flex flex-col items-center px-10 md:px-14">
+        <div className="responsive-stat-strip grid w-full max-w-xl grid-cols-[1fr_auto_1fr_auto_1fr] items-center mx-auto">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">2026</span>
             <span className="text-modina-muted text-xs font-bold tracking-widest uppercase mt-1">Latest Year</span>
           </div>
           <span className="w-[0.5px] h-8 bg-modina-divider" />
-          <div className="flex flex-col items-center px-10 md:px-14">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">12+</span>
             <span className="text-modina-muted text-xs font-bold tracking-widest uppercase mt-1">Articles</span>
           </div>
           <span className="w-[0.5px] h-8 bg-modina-divider" />
-          <div className="flex flex-col items-center px-10 md:px-14">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">4</span>
             <span className="text-modina-muted text-xs font-bold tracking-widest uppercase mt-1">Categories</span>
           </div>
@@ -124,7 +124,7 @@ export default function News() {
       </section>
 
       {/* SECTION 2 — FEATURED ARTICLE (HERO CARD) */}
-      <section className="w-full border-t border-modina-border" ref={featuredRef}>
+      <section className="w-full overflow-x-clip border-t border-modina-border" ref={featuredRef}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[1px] bg-modina-border">
           <div className="relative h-[320px] lg:h-[520px] bg-modina-bg-alt overflow-hidden">
             <motion.img
@@ -167,9 +167,9 @@ export default function News() {
       </section>
 
       {/* SECTION 3 — FILTER BAR */}
-      <div className="sticky top-[72px] z-30 bg-white/90 backdrop-blur-md border-t border-modina-border border-b shadow-design-sm">
-        <div className="container mx-auto px-6 md:px-12 lg:px-24 h-14 flex items-center justify-between overflow-x-auto no-scrollbar">
-          <div className="flex items-center h-full">
+      <div className="sticky top-[112px] sm:top-16 z-30 bg-white/90 backdrop-blur-md border-t border-modina-border border-b shadow-design-sm">
+        <div className="container mx-auto flex min-h-[104px] flex-col-reverse gap-2 px-4 py-2 md:px-12 xl:h-14 xl:min-h-0 xl:flex-row xl:items-center xl:justify-between xl:px-24 xl:py-0">
+          <div className="flex w-full min-w-0 items-center overflow-x-auto no-scrollbar xl:w-auto">
             {categories.map((cat, idx) => (
               <React.Fragment key={cat}>
                 <button
@@ -190,15 +190,15 @@ export default function News() {
             ))}
           </div>
 
-          <div className="flex items-center gap-6 ml-8 shrink-0">
-            <div className="relative flex items-center">
+          <div className="flex w-full items-center gap-6 shrink-0 xl:ml-8 xl:w-auto">
+            <div className="relative flex w-full items-center xl:w-auto">
               <Search className="w-3.5 h-3.5 text-modina-muted absolute left-0" />
               <input
                 type="text"
                 placeholder="Search news..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent border-b border-modina-divider focus:border-modina-red outline-none text-xs text-modina-heading placeholder:text-modina-subtle w-32 focus:w-48 transition-all pl-6 pb-1"
+                className="w-full bg-transparent border-b border-modina-divider focus:border-modina-red outline-none text-base text-modina-heading placeholder:text-modina-subtle transition-all pl-6 pb-1 xl:w-32 xl:text-xs xl:focus:w-48"
               />
             </div>
             <p className="hidden sm:block text-modina-muted text-xs font-bold tracking-widest uppercase whitespace-nowrap">

@@ -145,7 +145,7 @@ ACCESSIBILITY
 Minimum contrast ratio: AA.Keyboard accessible.Visible focus states (2px Brand Red outline).ARIA preserved.Never sacrifice accessibility for aesthetics.
 
 RESPONSIVE
-Desktop First: Large screens, excellent whitespace.Tablet: Reduce spacing proportionally.Mobile: Single column, large typography remains, buttons remain large.No horizontal scrolling.
+Mobile First: Start with the smallest usable phone layout, then progressively enhance for tablet, laptop, desktop, and large desktop. Very narrow phones use the approved compact two-row Navbar so the full tap-to-call telephone number, Search, Menu, and brand identity remain usable; wider mobile/tablet uses the compact one-row header where content fits, and xl+ retains the approved desktop navigation. Use content-driven stacking, wrapping, grids, and intentional inner scrollers. Keep touch targets practical, form controls at least 16px on mobile, meaningful content uncropped, and the document free of unintended horizontal scrolling while preserving the approved desktop visual identity.
 
 PERFORMANCE
 Do not increase bundle size unnecessarily.Reuse existing components.Optimize images.Lazy-load heavy assets.Maintain Lighthouse scores.

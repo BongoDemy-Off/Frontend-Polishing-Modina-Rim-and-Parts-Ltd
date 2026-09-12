@@ -62,7 +62,7 @@ export default function Products() {
   );
 
   return (
-    <div className="min-h-screen bg-white text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-white text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>Products | Modina Rim &amp; Parts Ltd. — 21 SKUs, Bangladesh</title>
         <meta name="description" content="Browse 21 automotive rim and parts products from Modina Rim &amp; Parts Ltd. — motorcycle rims, rickshaw rims, CNG rims, Easy Bike rims, and hardware. ISO-certified, Jashore Bangladesh." />
@@ -120,16 +120,16 @@ export default function Products() {
         <hr className="w-full max-w-md border-modina-border mx-auto mt-10 mb-10" />
 
         {/* Stats strip */}
-        <div className="flex items-center justify-center">
+        <div className="responsive-stat-strip grid w-full max-w-xl grid-cols-[1fr_auto_1fr_auto_1fr] items-center mx-auto">
           {[
             { value: '21', label: 'Products' },
             { value: '4', label: 'Categories' },
             { value: 'ISO', label: 'Certified' }
           ].map(({ value, label }, idx, arr) => (
             <React.Fragment key={label}>
-              <div className="flex flex-col items-center px-10 py-2">
+              <div className="flex min-w-0 flex-col items-center px-1 py-2 sm:px-10">
                 <span className="font-display font-bold text-modina-red" style={{ fontSize: 'clamp(28px, 3vw, 44px)' }}>{value}</span>
-                <span className="text-modina-muted text-xs font-semibold uppercase tracking-widest mt-1">{label}</span>
+                <span className="text-center text-modina-muted text-[11px] sm:text-xs font-semibold uppercase tracking-wider sm:tracking-widest mt-1 break-words">{label}</span>
               </div>
               {idx < arr.length - 1 && <span className="w-px h-8 bg-modina-divider" />}
             </React.Fragment>
@@ -138,10 +138,10 @@ export default function Products() {
       </section>
 
       {/* ─── FILTER BAR ─── */}
-      <section className="sticky top-[64px] z-30 w-full bg-white/95 backdrop-blur-md border-b border-modina-border shadow-[var(--shadow-sm)]">
-        <div className="container-premium flex items-center justify-between h-14">
+      <section className="sticky top-[112px] sm:top-16 z-30 w-full bg-white/95 backdrop-blur-md border-b border-modina-border shadow-[var(--shadow-sm)]">
+        <div className="container-premium flex min-h-[104px] flex-col-reverse gap-2 py-2 md:h-14 md:min-h-0 md:flex-row md:items-center md:justify-between md:py-0">
           {/* Category Filters */}
-          <div className="flex items-center gap-1 overflow-x-auto scrollbar-none">
+          <div className="flex w-full min-w-0 items-center gap-1 overflow-x-auto scrollbar-none md:w-auto">
             {categories.map((cat) => {
               const count = cat === 'All' ? productsData.length : productsData.filter((p) => p.category === cat).length;
               const isActive = activeCategory === cat;
@@ -165,11 +165,11 @@ export default function Products() {
           </div>
 
           {/* Search + Count */}
-          <div className="flex items-center gap-5 shrink-0">
+          <div className="flex w-full items-center gap-5 shrink-0 md:w-auto">
             <span className="text-modina-muted text-sm font-medium hidden sm:block">
               {filteredProducts.length} Results
             </span>
-            <div className="relative group">
+            <div className="relative group w-full md:w-auto">
               <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-modina-subtle group-focus-within:text-modina-red transition-colors duration-200" />
               <input
                 type="text"
@@ -177,7 +177,7 @@ export default function Products() {
                 aria-label="Search products"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-modina-bg-alt border border-modina-border rounded-lg py-2 pl-10 pr-4 text-sm text-modina-text focus:outline-none focus:border-modina-red focus:ring-2 focus:ring-modina-red/20 transition-all duration-200 w-36 focus:w-52 placeholder:text-modina-subtle"
+                className="w-full bg-modina-bg-alt border border-modina-border rounded-lg py-2.5 pl-10 pr-4 text-base text-modina-text focus:outline-none focus:border-modina-red focus:ring-2 focus:ring-modina-red/20 transition-all duration-200 placeholder:text-modina-subtle md:w-36 md:text-sm md:focus:w-52"
               />
             </div>
           </div>
@@ -209,7 +209,8 @@ export default function Products() {
                         productName={product.name} 
                         imageWidth={600} 
                         imageHeight={400} 
-                        imageClassName="group-hover:scale-[1.04] transition-transform duration-500 ease-in-out" 
+                        imageClassName="group-hover:scale-[1.04] transition-transform duration-500 ease-in-out"
+                        images={product.images}
                       />
                       <span className="absolute top-4 right-4 bg-white/90 border border-modina-border rounded-full px-3 py-1 text-xs font-bold text-modina-muted z-20 pointer-events-none">
                         {product.category}
@@ -255,23 +256,23 @@ export default function Products() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="mt-16 flex items-center justify-between border-t border-modina-border pt-8">
+          <div className="mt-16 grid grid-cols-2 items-center gap-3 border-t border-modina-border pt-8 sm:flex sm:justify-between">
             <button
               type="button"
               onClick={() => { setCurrentPage((p) => Math.max(1, p - 1)); window.scrollTo({ top: 400, behavior: 'smooth' }); }}
               disabled={currentPage === 1}
-              className="btn-secondary gap-2 disabled:opacity-30 disabled:cursor-not-allowed"
+              className="btn-secondary w-full justify-center gap-2 disabled:opacity-30 disabled:cursor-not-allowed sm:w-auto"
             >
               <ChevronLeft className="w-4 h-4" /> Previous
             </button>
-            <span className="text-modina-muted font-semibold text-sm">
+            <span className="order-first col-span-2 text-center text-modina-muted font-semibold text-sm sm:order-none">
               Page {currentPage} / {totalPages}
             </span>
             <button
               type="button"
               onClick={() => { setCurrentPage((p) => Math.min(totalPages, p + 1)); window.scrollTo({ top: 400, behavior: 'smooth' }); }}
               disabled={currentPage === totalPages}
-              className="btn-secondary gap-2 disabled:opacity-30 disabled:cursor-not-allowed"
+              className="btn-secondary w-full justify-center gap-2 disabled:opacity-30 disabled:cursor-not-allowed sm:w-auto"
             >
               Next <ChevronRight className="w-4 h-4" />
             </button>
@@ -290,7 +291,7 @@ export default function Products() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={() => setIsDrawerOpen(false)}
-              className="fixed inset-0 bg-modina-heading/40 backdrop-blur-sm z-40"
+              className="fixed inset-0 bg-modina-heading/40 backdrop-blur-sm z-[70]"
             />
 
             {/* Drawer Panel */}
@@ -299,11 +300,11 @@ export default function Products() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed right-0 top-0 h-full w-full max-w-[480px] md:max-w-[520px] bg-white z-50 flex flex-col overflow-hidden border-l border-modina-border shadow-[var(--shadow-lg)]"
+              className="fixed right-0 top-0 h-full w-full max-w-[480px] md:max-w-[520px] bg-white z-[80] flex flex-col overflow-hidden border-l border-modina-border shadow-[var(--shadow-lg)]"
             >
               {/* Drawer Header */}
-              <div className="sticky top-0 bg-white z-10 flex items-center justify-between px-8 py-5 border-b border-modina-border">
-                <div className="flex items-center gap-3">
+              <div className="sticky top-0 bg-white z-10 flex min-w-0 items-center justify-between gap-3 px-4 py-3 sm:px-8 sm:py-5 border-b border-modina-border">
+                <div className="flex min-w-0 flex-wrap items-center gap-2 sm:gap-3">
                   <span className="inline-flex items-center px-3 py-1 bg-modina-red/10 text-modina-red text-xs font-bold rounded-full uppercase tracking-wider">
                     {selectedProduct.category}
                   </span>
@@ -314,7 +315,7 @@ export default function Products() {
                 <button
                   type="button"
                   onClick={() => setIsDrawerOpen(false)}
-                  className="flex items-center gap-2 text-modina-muted hover:text-modina-red transition-colors duration-200 text-sm font-semibold"
+                  className="flex h-11 shrink-0 items-center gap-2 px-2 text-modina-muted hover:text-modina-red transition-colors duration-200 text-sm font-semibold"
                 >
                   Close <X className="w-4 h-4" />
                 </button>
@@ -328,12 +329,13 @@ export default function Products() {
                     productId={selectedProduct.id} 
                     productName={selectedProduct.name} 
                     imageWidth={800} 
-                    imageHeight={600} 
+                    imageHeight={600}
+                    images={selectedProduct.images}
                   />
                 </div>
 
                 {/* Content Block */}
-                <div className="px-8 py-8 flex flex-col gap-0">
+                <div className="px-4 py-6 sm:px-8 sm:py-8 flex flex-col gap-0">
                   <h2 className="text-2xl font-display font-bold text-modina-heading leading-tight tracking-tight mb-2">
                     {selectedProduct.name}
                   </h2>
@@ -380,7 +382,7 @@ export default function Products() {
               </div>
 
               {/* Drawer Footer */}
-              <div className="sticky bottom-0 bg-white px-8 py-6 border-t border-modina-border flex flex-col gap-3">
+              <div className="sticky bottom-0 bg-white px-4 py-4 sm:px-8 sm:py-6 border-t border-modina-border flex flex-col gap-3">
                 <button
                   type="button"
                   onClick={() => {

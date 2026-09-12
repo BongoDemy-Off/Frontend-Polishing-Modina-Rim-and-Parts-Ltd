@@ -48,7 +48,7 @@ export default function Downloads() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-white text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>Downloads | Modina Rim &amp; Parts Ltd. — Catalogs, Certificates &amp; Technical Docs</title>
         <meta name="description" content="Download product catalogs, ISO certificates, technical specification sheets, CAD models, and legal documents from Modina Rim & Parts Ltd., Jashore, Bangladesh." />
@@ -67,7 +67,7 @@ export default function Downloads() {
 
         <div className="w-24 h-[2px] bg-modina-red mx-auto mb-10" />
 
-        <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
           {letters.map((letter, i) => (
             letter === " " ? (
               <span key={i} className="w-[0.3em]">&nbsp;</span>
@@ -102,18 +102,18 @@ export default function Downloads() {
 
         <hr className="w-full max-w-md border-modina-divider mx-auto mt-10 mb-10" />
 
-        <div className="flex items-center justify-center gap-0 mb-14">
-          <div className="flex flex-col items-center px-10 md:px-14">
+        <div className="responsive-stat-strip grid w-full max-w-xl grid-cols-[1fr_auto_1fr_auto_1fr] items-center mx-auto mb-14">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">11</span>
             <span className="text-xs font-bold tracking-widest text-modina-muted uppercase mt-1">Documents</span>
           </div>
           <span className="w-[0.5px] h-8 bg-modina-divider" />
-          <div className="flex flex-col items-center px-10 md:px-14">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">Free</span>
             <span className="text-xs font-bold tracking-widest text-modina-muted uppercase mt-1">Downloads</span>
           </div>
           <span className="w-[0.5px] h-8 bg-modina-divider" />
-          <div className="flex flex-col items-center px-10 md:px-14">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">PDF</span>
             <span className="text-xs font-bold tracking-widest text-modina-muted uppercase mt-1">Format</span>
           </div>
@@ -121,9 +121,9 @@ export default function Downloads() {
       </section>
 
       {/* SECTION 2 — FILTER BAR */}
-      <div className="sticky top-[72px] z-30 bg-white/95 backdrop-blur-md border-b border-modina-divider">
-        <div className="container mx-auto px-6 md:px-12 lg:px-24 h-14 flex items-center justify-between overflow-x-auto no-scrollbar">
-          <div className="flex items-center h-full">
+      <div className="sticky top-[112px] sm:top-16 z-30 bg-white/95 backdrop-blur-md border-b border-modina-divider">
+        <div className="container mx-auto flex min-h-[104px] flex-col-reverse gap-2 px-4 py-2 md:px-12 xl:h-14 xl:min-h-0 xl:flex-row xl:items-center xl:justify-between xl:px-24 xl:py-0">
+          <div className="flex w-full min-w-0 items-center overflow-x-auto no-scrollbar xl:w-auto">
             {categories.map((cat, idx) => (
               <React.Fragment key={cat}>
                 <button
@@ -144,15 +144,15 @@ export default function Downloads() {
             ))}
           </div>
 
-          <div className="flex items-center gap-6 ml-8 shrink-0">
-            <div className="relative flex items-center">
+          <div className="flex w-full items-center gap-6 shrink-0 xl:ml-8 xl:w-auto">
+            <div className="relative flex w-full items-center xl:w-auto">
               <Search className="w-3.5 h-3.5 text-modina-subtle absolute left-0" />
               <input
                 type="text"
                 placeholder="Search files..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent border-b border-modina-border focus:border-modina-red outline-none text-xs text-modina-text placeholder:text-modina-subtle w-32 focus:w-48 transition-all duration-300 pl-6 pb-1"
+                className="w-full bg-transparent border-b border-modina-border focus:border-modina-red outline-none text-base text-modina-text placeholder:text-modina-subtle transition-all duration-300 pl-6 pb-1 xl:w-32 xl:text-xs xl:focus:w-48"
               />
             </div>
             <p className="hidden sm:block text-xs font-bold tracking-widest text-modina-muted whitespace-nowrap">
@@ -268,7 +268,7 @@ export default function Downloads() {
       </section>
 
       {/* SECTION 4 — FEATURED DOWNLOAD BANNER */}
-      <section className="w-full border-t border-modina-divider bg-modina-bg-alt py-20 lg:py-24" ref={featuredRef}>
+      <section className="w-full overflow-x-clip border-t border-modina-divider bg-modina-bg-alt py-20 lg:py-24" ref={featuredRef}>
         <div className="container mx-auto px-6 md:px-12 lg:px-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <motion.div 
@@ -277,7 +277,7 @@ export default function Downloads() {
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="card-premium p-10 lg:p-16 flex flex-col justify-center"
             >
-              <p className="text-[120px] font-display font-bold text-modina-divider leading-none select-none">
+              <p className="text-[80px] sm:text-[120px] font-display font-bold text-modina-divider leading-none select-none">
                 2026
               </p>
               <p className="text-xs font-bold tracking-widest text-modina-red uppercase mt-2">

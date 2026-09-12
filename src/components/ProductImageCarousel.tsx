@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ProductImage } from '../lib/data';
 
 interface ProductImageCarouselProps {
   productId: number;
@@ -8,6 +9,7 @@ interface ProductImageCarouselProps {
   imageWidth?: number;
   imageHeight?: number;
   imageClassName?: string;
+  images?: ProductImage[];
 }
 
 export function ProductImageCarousel({
@@ -15,16 +17,21 @@ export function ProductImageCarousel({
   productName,
   imageWidth = 600,
   imageHeight = 400,
-  imageClassName = ""
+  imageClassName = "",
+  images: productImages
 }: ProductImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  const images = [
+  const images = productImages?.map(img => img.src) || [
     `https://picsum.photos/seed/modina-${productId}-v2-1/${imageWidth}/${imageHeight}`,
     `https://picsum.photos/seed/modina-${productId}-v2-2/${imageWidth}/${imageHeight}`,
     `https://picsum.photos/seed/modina-${productId}-v2-3/${imageWidth}/${imageHeight}`,
   ];
+
+  const getAltText = (idx: number) => {
+    return productImages && productImages[idx] ? productImages[idx].alt : `${productName} view ${idx + 1}`;
+  };
 
   const slideVariants = {
     enter: (direction: number) => ({
@@ -66,7 +73,7 @@ export function ProductImageCarousel({
           <motion.img
             key={currentIndex}
             src={images[currentIndex]}
-            alt={`${productName} view ${currentIndex + 1}`}
+            alt={getAltText(currentIndex)}
             custom={direction}
             variants={slideVariants}
             initial="enter"
@@ -82,7 +89,7 @@ export function ProductImageCarousel({
       <button
         type="button"
         onClick={(e) => paginate(-1, e)}
-        className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 backdrop-blur border border-modina-border/50 text-modina-heading flex items-center justify-center shadow-sm opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 hover:bg-white hover:text-modina-red z-10 focus:opacity-100"
+        className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 backdrop-blur border border-modina-border/50 text-modina-heading flex items-center justify-center shadow-sm opacity-100 transition-all duration-300 hover:bg-white hover:text-modina-red z-10 lg:opacity-0 lg:group-hover/carousel:opacity-100 lg:focus:opacity-100"
         aria-label="Previous image"
       >
         <ChevronLeft className="w-4 h-4" />
@@ -91,7 +98,7 @@ export function ProductImageCarousel({
       <button
         type="button"
         onClick={(e) => paginate(1, e)}
-        className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 backdrop-blur border border-modina-border/50 text-modina-heading flex items-center justify-center shadow-sm opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 hover:bg-white hover:text-modina-red z-10 focus:opacity-100"
+        className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 backdrop-blur border border-modina-border/50 text-modina-heading flex items-center justify-center shadow-sm opacity-100 transition-all duration-300 hover:bg-white hover:text-modina-red z-10 lg:opacity-0 lg:group-hover/carousel:opacity-100 lg:focus:opacity-100"
         aria-label="Next image"
       >
         <ChevronRight className="w-4 h-4" />
@@ -104,13 +111,15 @@ export function ProductImageCarousel({
             key={idx}
             type="button"
             onClick={(e) => handleDotClick(idx, e)}
-            className={`transition-all duration-300 rounded-full shadow-sm ${
-              currentIndex === idx 
-                ? "bg-white w-4 h-1.5 opacity-100" 
-                : "bg-white/70 w-1.5 h-1.5 opacity-50 hover:opacity-100 hover:bg-white"
-            }`}
+            className="flex h-8 w-8 items-center justify-center rounded-full"
             aria-label={`Go to slide ${idx + 1}`}
-          />
+          >
+            <span className={`block transition-all duration-300 rounded-full shadow-sm ${
+              currentIndex === idx
+                ? "bg-white w-4 h-1.5 opacity-100"
+                : "bg-white/70 w-1.5 h-1.5 opacity-70"
+            }`} />
+          </button>
         ))}
       </div>
     </div>

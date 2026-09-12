@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
 import Layout from './layouts/Layout';
 import ScrollToTop from './components/ScrollToTop';
+import { useLocaleSync } from './hooks/useLocaleSync';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import About from './pages/About';
@@ -25,6 +26,8 @@ import FAQ from './pages/FAQ';
 import Preloader from './components/Preloader';
 
 export default function App() {
+  useLocaleSync(); // Synchronise <html> lang / dir / locale class / font tokens before paint
+
   // Show preloader only on first visit per session
   const [loading, setLoading] = useState(
     () => !sessionStorage.getItem('modina_loaded')

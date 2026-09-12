@@ -43,7 +43,7 @@ export default function Sustainability() {
   const ctaInView = useInView(ctaRef, { once: true, margin: '-60px' });
 
   return (
-    <div className="min-h-screen bg-white text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-white text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>Sustainability &amp; CSR | Modina Rim &amp; Parts Ltd.</title>
         <meta name="description" content="Modina Rim & Parts Ltd. is ISO 14001:2015 certified. Committed to 30% waste reduction, 150+ employee welfare, youth apprenticeship programs, and responsible manufacturing in Jashore, Bangladesh." />
@@ -62,7 +62,7 @@ export default function Sustainability() {
 
         <div className="w-24 h-[2px] bg-modina-red mx-auto mb-10" />
 
-        <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
           {letters.map((letter, i) => (
             letter === " " ? (
               <span key={i} className="w-[0.3em]">&nbsp;</span>
@@ -97,18 +97,18 @@ export default function Sustainability() {
 
         <hr className="w-full max-w-md border-modina-divider mx-auto mt-10 mb-10" />
 
-        <div className="flex items-center justify-center gap-0">
-          <div className="flex flex-col items-center px-10 md:px-14">
+        <div className="responsive-stat-strip grid w-full max-w-xl grid-cols-[1fr_auto_1fr_auto_1fr] items-center mx-auto">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">ISO</span>
             <span className="text-xs font-bold tracking-widest text-modina-muted uppercase mt-1">14001 Certified</span>
           </div>
           <span className="w-[0.5px] h-8 bg-modina-divider" />
-          <div className="flex flex-col items-center px-10 md:px-14">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">30%</span>
             <span className="text-xs font-bold tracking-widest text-modina-muted uppercase mt-1">Waste Reduced</span>
           </div>
           <span className="w-[0.5px] h-8 bg-modina-divider" />
-          <div className="flex flex-col items-center px-10 md:px-14">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">200+</span>
             <span className="text-xs font-bold tracking-widest text-modina-muted uppercase mt-1">Lives Impacted</span>
           </div>
@@ -118,7 +118,7 @@ export default function Sustainability() {
       </section>
 
       {/* SECTION 2 — INTRO SPLIT */}
-      <section className="w-full border-b border-modina-divider" ref={introRef}>
+      <section className="w-full overflow-x-clip border-b border-modina-divider" ref={introRef}>
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <motion.div 
             initial={{ opacity: 0, x: -40 }}
@@ -220,7 +220,7 @@ export default function Sustainability() {
       </section>
 
       {/* SECTION 4 — ENVIRONMENT SHOWCASE */}
-      <section className="w-full border-b border-modina-divider" ref={envRef}>
+      <section className="w-full overflow-x-clip border-b border-modina-divider" ref={envRef}>
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="relative h-[400px] lg:h-[520px] overflow-hidden">
             <motion.img

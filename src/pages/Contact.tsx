@@ -54,7 +54,7 @@ export default function Contact() {
   const inputClass = 'w-full bg-white border border-modina-border rounded-lg px-4 py-3.5 text-base text-modina-text focus:outline-none focus:border-modina-red focus:ring-2 focus:ring-modina-red/20 transition-all duration-200 placeholder:text-modina-subtle';
 
   return (
-    <div className="min-h-screen bg-white text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-white text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>Contact Us | Modina Rim &amp; Parts Ltd. — Jashore, Bangladesh</title>
         <meta name="description" content="Contact Modina Rim &amp; Parts Ltd. for product inquiries, distributor partnerships, and export orders. Plot S1/A, BSCIC Industrial Area, Jhumjhumpur, Jashore, Bangladesh." />
@@ -85,14 +85,14 @@ export default function Contact() {
           <span>Jashore, Bangladesh</span>
         </p>
         <hr className="w-full max-w-md border-modina-border mx-auto mt-10 mb-10" />
-        <div className="flex items-center justify-center">
+        <div className="responsive-stat-strip grid w-full max-w-xl grid-cols-[1fr_auto_1fr_auto_1fr] items-center mx-auto">
           {[
             { value: '24H', label: 'Response Time' },
             { value: '+880', label: 'Phone' },
             { value: '3', label: 'Offices' }
           ].map(({ value, label }, idx, arr) => (
             <React.Fragment key={label}>
-              <div className="flex flex-col items-center px-10 md:px-14 py-2">
+              <div className="flex min-w-0 flex-col items-center px-1 py-2 sm:px-10 md:px-14">
                 <span className="font-display font-bold text-modina-red" style={{ fontSize: 'clamp(28px, 3vw, 44px)' }}>{value}</span>
                 <span className="text-modina-muted text-xs font-semibold uppercase tracking-widest mt-1">{label}</span>
               </div>

@@ -103,7 +103,7 @@ export default function Privacy() {
   const ctaInView = useInView(ctaRef, { once: true, margin: '-60px' });
 
   return (
-    <div className="min-h-screen bg-white text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-white text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>Privacy Policy | Modina Rim &amp; Parts Ltd.</title>
         <meta name="description" content="Privacy Policy for Modina Rim & Parts Ltd. — how we collect, use, and protect your personal information on our website and in our business dealings." />
@@ -120,7 +120,7 @@ export default function Privacy() {
 
         <div className="w-24 h-[2px] bg-modina-red mx-auto mb-10" />
 
-        <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
           {letters.map((letter, i) => (
             <motion.span
               key={i}

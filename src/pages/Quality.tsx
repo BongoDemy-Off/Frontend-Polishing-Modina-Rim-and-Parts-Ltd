@@ -56,7 +56,7 @@ export default function Quality() {
   const stepOpacity = [1, 0.7, 0.55, 0.4, 0.28, 0.18];
 
   return (
-    <div className="min-h-screen bg-modina-bg text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-modina-bg text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>Quality Assurance | Modina Rim &amp; Parts Ltd. — ISO 9001:2015 Certified</title>
         <meta name="description" content="Modina Rim &amp; Parts Ltd. operates a zero-defect quality policy with 6-stage manufacturing QC, ISO 9001:2015, ISO 14001:2015, and ISO 45001:2018 certifications from LMS Certification Limited." />
@@ -75,7 +75,7 @@ export default function Quality() {
 
         <div className="w-24 h-[2px] bg-modina-red mx-auto mb-10" />
 
-        <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
           {letters.map((letter, i) => (
             letter === " " ? (
               <span key={i} className="w-[0.3em]">&nbsp;</span>
@@ -110,18 +110,18 @@ export default function Quality() {
 
         <hr className="w-full max-w-md border-modina-divider mx-auto mt-10 mb-10" />
 
-        <div className="flex items-center justify-center gap-0 mb-10">
-          <div className="flex flex-col items-center px-10 md:px-14">
+        <div className="responsive-stat-strip grid w-full max-w-xl grid-cols-[1fr_auto_1fr_auto_1fr] items-center mx-auto mb-10">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-[clamp(32px,4vw,48px)] font-display font-bold text-modina-red">ISO</span>
             <span className="text-modina-muted text-xs font-bold tracking-widest uppercase mt-2">Certified</span>
           </div>
           <span className="w-[0.5px] h-12 bg-modina-divider" />
-          <div className="flex flex-col items-center px-10 md:px-14">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-[clamp(32px,4vw,48px)] font-display font-bold text-modina-red">100%</span>
             <span className="text-modina-muted text-xs font-bold tracking-widest uppercase mt-2">Pass Rate</span>
           </div>
           <span className="w-[0.5px] h-12 bg-modina-divider" />
-          <div className="flex flex-col items-center px-10 md:px-14">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-[clamp(32px,4vw,48px)] font-display font-bold text-modina-red">15+</span>
             <span className="text-modina-muted text-xs font-bold tracking-widest uppercase mt-2">Years QA</span>
           </div>
@@ -129,7 +129,7 @@ export default function Quality() {
       </section>
 
       {/* SECTION 2 — QUALITY PHILOSOPHY SPLIT */}
-      <section className="w-full border-t border-modina-border" ref={qualityRef}>
+      <section className="w-full overflow-x-clip border-t border-modina-border" ref={qualityRef}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[1px] bg-modina-border">
           <motion.div 
             initial={{ opacity: 0, x: -40 }}

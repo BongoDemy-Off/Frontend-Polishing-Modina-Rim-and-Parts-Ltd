@@ -154,7 +154,7 @@ export default function NewsDetail() {
 
   if (!article) {
     return (
-      <div className="min-h-screen bg-white text-modina-text pt-[72px] flex flex-col items-center justify-center gap-6">
+      <div className="min-h-screen bg-white text-modina-text pt-[112px] sm:pt-[72px] flex flex-col items-center justify-center gap-6">
         <p className="text-xs font-bold tracking-widest text-modina-muted uppercase">Article not found</p>
         <Link to="/news" className="text-xs font-bold tracking-widest text-modina-red uppercase hover:text-modina-heading transition-colors duration-300">
           ← Back to News
@@ -164,7 +164,7 @@ export default function NewsDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-white text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>{article.title} | Modina Rim &amp; Parts Ltd.</title>
         <meta name="description" content={article.excerpt} />
@@ -265,11 +265,11 @@ export default function NewsDetail() {
       {/* PREV / NEXT NAVIGATION */}
       {(prevArticle || nextArticle) && (
         <div className="border-t border-modina-divider">
-          <div className="grid grid-cols-1 md:grid-cols-2 divide-x divide-modina-divider">
+          <div className="grid min-w-0 grid-cols-1 divide-y divide-modina-divider md:grid-cols-2 md:divide-x md:divide-y-0">
             {prevArticle ? (
               <Link
                 to={`/news/${prevArticle.id}`}
-                className="group bg-modina-bg-alt p-8 lg:p-10 flex flex-col gap-3 relative transition-all duration-300 ease-in-out hover:bg-white"
+                className="group min-w-0 bg-modina-bg-alt p-6 sm:p-8 lg:p-10 flex flex-col gap-3 relative transition-all duration-300 ease-in-out hover:bg-white"
               >
                 <div className="absolute top-0 left-0 w-0 group-hover:w-full h-[2px] bg-modina-red transition-all duration-500" />
                 <div className="flex items-center gap-2 text-modina-subtle group-hover:text-modina-red transition-colors duration-300">

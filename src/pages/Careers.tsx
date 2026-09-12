@@ -143,7 +143,7 @@ export default function Careers() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-white text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>Careers | Modina Rim &amp; Parts Ltd. — Join Our Team</title>
         <meta name="description" content="Join Modina Rim & Parts Ltd., Bangladesh's ISO-certified automotive parts manufacturer. View current job openings in manufacturing, quality, sales and operations at our Jashore facility." />
@@ -158,7 +158,7 @@ export default function Careers() {
           <span className="text-modina-muted">Careers</span>
         </div>
         <div className="w-24 h-[2px] bg-modina-red mx-auto mb-10" />
-        <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
           {letters.map((letter, i) => (
             <motion.span key={i} initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: i * 0.055, ease: [0.16, 1, 0.3, 1] }}>
               {letter}
@@ -302,29 +302,29 @@ export default function Careers() {
       <AnimatePresence>
         {isDrawerOpen && selectedJob && (
           <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} onClick={closeDrawer} className="fixed inset-0 bg-modina-heading/40 backdrop-blur-sm z-40" />
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} onClick={closeDrawer} className="fixed inset-0 bg-modina-heading/40 backdrop-blur-sm z-[70]" />
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed right-0 top-0 h-full w-full max-w-[520px] bg-white z-50 flex flex-col border-l border-modina-border shadow-design-lg overflow-hidden"
+              className="fixed right-0 top-0 h-full w-full max-w-[520px] bg-white z-[80] flex flex-col border-l border-modina-border shadow-design-lg overflow-hidden"
             >
               {/* Drawer header */}
-              <div className="sticky top-0 bg-white z-10 flex items-center justify-between px-8 py-5 border-b border-modina-border">
-                <div className="flex items-center gap-4">
+              <div className="sticky top-0 bg-white z-10 flex min-w-0 items-center justify-between gap-3 px-4 py-3 sm:px-8 sm:py-5 border-b border-modina-border">
+                <div className="flex min-w-0 flex-wrap items-center gap-2 sm:gap-4">
                   <span className="text-xs font-bold tracking-widest text-modina-red uppercase">{selectedJob.department}</span>
                   <span className="w-[0.5px] h-3 bg-modina-divider" />
                   <span className="text-xs font-bold tracking-widest text-modina-muted uppercase">{selectedJob.type}</span>
                 </div>
-                <button type="button" onClick={closeDrawer} className="text-xs font-bold tracking-widest text-modina-muted uppercase hover:text-modina-red transition-colors duration-300 flex items-center gap-2">
+                <button type="button" onClick={closeDrawer} className="flex h-11 shrink-0 items-center gap-2 px-2 text-xs font-bold tracking-widest text-modina-muted uppercase hover:text-modina-red transition-colors duration-300">
                   Close <X className="w-3 h-3" />
                 </button>
               </div>
 
               {/* Drawer body */}
               <div className="flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden">
-                <div className="px-8 py-8">
+                <div className="px-4 py-6 sm:px-8 sm:py-8">
                   <h2 className="text-2xl md:text-3xl font-display font-bold text-modina-heading tracking-tight mb-2">{selectedJob.title}</h2>
                   <div className="flex items-center gap-4 flex-wrap mb-6">
                     <div className="flex items-center gap-2">
@@ -382,7 +382,7 @@ export default function Careers() {
                               name={field.name}
                               value={formData[field.name as keyof typeof formData]}
                               onChange={e => setFormData(p => ({ ...p, [field.name]: e.target.value }))}
-                              className="bg-transparent border-b border-modina-border focus:border-modina-red outline-none text-[13px] text-modina-text py-3 font-light transition-all duration-300 rounded-none"
+                              className="bg-transparent border-b border-modina-border focus:border-modina-red outline-none text-base text-modina-text py-3 font-light transition-all duration-300 rounded-none"
                             />
                           </div>
                         ))}
@@ -394,7 +394,7 @@ export default function Careers() {
                             value={formData.message}
                             onChange={e => setFormData(p => ({ ...p, message: e.target.value }))}
                             placeholder="Tell us briefly about your experience..."
-                            className="bg-transparent border-b border-modina-border focus:border-modina-red outline-none text-[13px] text-modina-text py-3 font-light transition-all duration-300 rounded-none resize-none placeholder:text-modina-subtle"
+                            className="bg-transparent border-b border-modina-border focus:border-modina-red outline-none text-base text-modina-text py-3 font-light transition-all duration-300 rounded-none resize-none placeholder:text-modina-subtle"
                           />
                         </div>
                         <button type="submit" className="btn-primary w-full flex items-center justify-center gap-4 mt-2">

@@ -63,7 +63,7 @@ export default function Certificates() {
   const ctaInView = useInView(ctaRef, { once: true, margin: '-60px' });
 
   return (
-    <div className="min-h-screen bg-modina-bg text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-modina-bg text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>Certifications | Modina Rim &amp; Parts Ltd. — ISO 9001, 14001, 45001</title>
         <meta name="description" content="Modina Rim &amp; Parts Ltd. holds ISO 9001:2015, ISO 14001:2015, and ISO 45001:2018 certifications issued by LMS Certification Limited, April 2023. View original certificate documents." />
@@ -82,7 +82,7 @@ export default function Certificates() {
 
         <div className="w-24 h-[2px] bg-modina-red mx-auto mb-10" />
 
-        <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
           {letters.map((letter, i) => (
             letter === " " ? (
               <span key={i} className="w-[0.3em]">&nbsp;</span>
@@ -117,18 +117,18 @@ export default function Certificates() {
 
         <hr className="w-full max-w-md border-modina-divider mx-auto mt-10 mb-10" />
 
-        <div className="flex items-center justify-center gap-0">
-          <div className="flex flex-col items-center px-10 md:px-14">
+        <div className="responsive-stat-strip grid w-full max-w-xl grid-cols-[1fr_auto_1fr_auto_1fr] items-center mx-auto">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">3+</span>
             <span className="text-modina-muted text-xs font-bold tracking-widest uppercase mt-1">Certifications</span>
           </div>
           <span className="w-[0.5px] h-8 bg-modina-divider" />
-          <div className="flex flex-col items-center px-10 md:px-14">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">2010</span>
             <span className="text-modina-muted text-xs font-bold tracking-widest uppercase mt-1">Since</span>
           </div>
           <span className="w-[0.5px] h-8 bg-modina-divider" />
-          <div className="flex flex-col items-center px-10 md:px-14">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">100%</span>
             <span className="text-modina-muted text-xs font-bold tracking-widest uppercase mt-1">Compliant</span>
           </div>
@@ -138,7 +138,7 @@ export default function Certificates() {
       </section>
 
       {/* SECTION 2 — INTRO SPLIT */}
-      <section className="w-full border-t border-modina-border" ref={introRef}>
+      <section className="w-full overflow-x-clip border-t border-modina-border" ref={introRef}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[1px] bg-modina-border">
           <motion.div 
             initial={{ opacity: 0, x: -40 }}
@@ -267,7 +267,8 @@ export default function Certificates() {
         </div>
 
         <div className="container mx-auto px-6 md:px-12 lg:px-24">
-          <div className="relative w-full min-w-[700px] overflow-x-auto pb-4 no-scrollbar">
+          <div className="w-full overflow-x-auto pb-4 no-scrollbar">
+            <div className="relative min-w-[700px]">
             <motion.div
               initial={{ scaleX: 0 }}
               animate={awardsInView ? { scaleX: 1 } : {}}
@@ -286,6 +287,7 @@ export default function Certificates() {
                   <p className="text-[12px] text-modina-muted font-light leading-relaxed pr-4">{item.desc}</p>
                 </div>
               ))}
+            </div>
             </div>
           </div>
         </div>

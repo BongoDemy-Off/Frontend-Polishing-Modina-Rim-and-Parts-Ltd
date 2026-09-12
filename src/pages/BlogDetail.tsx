@@ -60,7 +60,7 @@ export default function BlogDetail() {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-white text-modina-text pt-[72px] flex flex-col items-center justify-center gap-6">
+      <div className="min-h-screen bg-white text-modina-text pt-[112px] sm:pt-[72px] flex flex-col items-center justify-center gap-6">
         <p className="text-xs font-bold tracking-widest text-modina-muted uppercase">Article not found</p>
         <Link to="/blog" className="text-xs font-bold tracking-widest text-modina-red uppercase hover:text-modina-heading transition-colors duration-300">← Back to Blog</Link>
       </div>
@@ -68,7 +68,7 @@ export default function BlogDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-white text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>{post.title} | Modina Blog</title>
         <meta name="description" content={post.excerpt} />
@@ -152,9 +152,9 @@ export default function BlogDetail() {
       {/* PREV / NEXT */}
       {(prev || next) && (
         <div className="border-t border-modina-divider">
-          <div className="grid grid-cols-1 md:grid-cols-2 divide-x divide-modina-divider">
+          <div className="grid min-w-0 grid-cols-1 divide-y divide-modina-divider md:grid-cols-2 md:divide-x md:divide-y-0">
             {prev ? (
-              <Link to={`/blog/${prev.id}`} className="group bg-modina-bg-alt p-8 lg:p-10 flex flex-col gap-3 relative transition-all duration-300 ease-in-out hover:bg-white">
+              <Link to={`/blog/${prev.id}`} className="group min-w-0 bg-modina-bg-alt p-6 sm:p-8 lg:p-10 flex flex-col gap-3 relative transition-all duration-300 ease-in-out hover:bg-white">
                 <div className="absolute top-0 left-0 w-0 group-hover:w-full h-[2px] bg-modina-red transition-all duration-500" />
                 <div className="flex items-center gap-2 text-modina-subtle group-hover:text-modina-red transition-colors duration-300"><ArrowLeft className="w-3.5 h-3.5" /><span className="text-xs font-bold tracking-widest uppercase">Previous</span></div>
                 <h3 className="font-display font-bold text-modina-muted group-hover:text-modina-heading text-lg tracking-tight transition-colors duration-300 line-clamp-2">{prev.title}</h3>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ChevronDown, X, Search, Globe, Package, FileText, Image, PenTool } from 'lucide-react';
+import { ChevronDown, X, Search, Globe, Package, FileText, Image, PenTool, Headphones } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { cn } from '../lib/utils';
@@ -223,29 +223,26 @@ export default function Navbar() {
     <>
       <header
         className={cn(
-          'fixed top-0 w-full z-50 transition-all duration-300 border-b border-modina-border',
+          'fixed top-0 w-full z-50 h-[112px] overflow-x-clip transition-all duration-300 border-b-2 border-modina-red sm:h-[72px]',
           isScrolled
-            ? 'h-16 shadow-[var(--shadow-md)] bg-white/95 backdrop-blur-md'
-            : 'h-[72px] bg-white'
+            ? 'shadow-[0_4px_12px_rgba(229,37,37,0.15)] bg-white/95 backdrop-blur-md sm:h-16'
+            : 'bg-white'
         )}
       >
-        <div className="container-premium h-full relative flex items-center justify-between gap-6">
+        <div className="relative mx-auto grid h-full w-full max-w-[1280px] grid-cols-1 grid-rows-2 items-center gap-0 px-3 sm:flex sm:justify-between sm:gap-4 sm:px-6 md:px-[clamp(24px,5vw,80px)] xl:gap-6">
           {/* Left: Logo + Wordmark */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="flex items-center gap-2.5 shrink-0"
+            className="flex min-w-0 items-center gap-2.5 self-center sm:shrink-0"
           >
             <Link to="/" className="flex items-center justify-center hover:scale-105 transition-transform duration-300">
               <Logo className="w-9 h-9 xl:w-11 xl:h-11 object-contain" />
             </Link>
-            <Link to="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
-              <span className="font-display font-extrabold text-modina-heading text-[14px] sm:text-[16.5px] tracking-tight">
-                MODINA <span className="text-modina-red">RIM</span>
-              </span>
-              <span className="hidden min-[375px]:inline text-modina-heading text-[13px] sm:text-[15.5px] font-bold tracking-wide opacity-80">
-                & Parts Ltd.
+            <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
+              <span className="font-display font-extrabold text-[14px] sm:text-[16.5px] tracking-tight whitespace-nowrap">
+                <span className="text-modina-heading">Modina</span> <span className="text-modina-red">Rim & Parts Ltd.</span>
               </span>
             </Link>
           </motion.div>
@@ -349,12 +346,12 @@ export default function Navbar() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-            className="flex items-center gap-2 sm:gap-3 shrink-0"
+            className="flex w-full min-w-0 items-center justify-between gap-1.5 self-center sm:w-auto sm:justify-end sm:gap-2 md:gap-3 sm:shrink-0"
           >
             {/* Desktop Search */}
-            <div className="relative hidden md:block" ref={desktopSearchRef}>
-              <div className="relative group">
-                <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-modina-subtle group-focus-within:text-modina-red transition-colors duration-200" />
+            <div className="relative hidden md:flex items-center justify-end" ref={desktopSearchRef}>
+              <div className="relative group flex items-center justify-end">
+                <Search className="w-5 h-5 absolute right-2.5 top-1/2 -translate-y-1/2 text-modina-heading group-hover:text-modina-red group-focus-within:text-modina-red transition-colors duration-200 pointer-events-none z-10" />
                 <input
                   type="text"
                   placeholder={lang === 'EN' ? 'Search...' : 'অনুসন্ধান...'}
@@ -364,7 +361,7 @@ export default function Navbar() {
                     setIsSearchFocused(true);
                   }}
                   onFocus={() => setIsSearchFocused(true)}
-                  className="bg-modina-bg-section border border-transparent rounded-[8px] py-2 pl-10 pr-3 text-sm text-modina-text focus:outline-none focus:border-modina-red focus:bg-white focus:ring-2 focus:ring-modina-red/20 hover:border-modina-border transition-all duration-200 w-28 lg:w-36 xl:w-48 placeholder:text-modina-subtle"
+                  className="bg-transparent border border-transparent rounded-[8px] py-2 pl-4 pr-9 text-sm text-modina-text focus:outline-none focus:border-modina-red focus:bg-white focus:ring-2 focus:ring-modina-red/20 group-hover:bg-modina-bg-alt group-hover:border-modina-border transition-all duration-300 w-10 group-hover:w-48 focus:w-48 xl:group-hover:w-56 xl:focus:w-56 placeholder:opacity-0 group-hover:placeholder:opacity-100 focus:placeholder:opacity-100 placeholder:text-modina-subtle cursor-pointer focus:cursor-text overflow-hidden"
                 />
               </div>
 
@@ -394,31 +391,33 @@ export default function Navbar() {
             </button>
 
             {/* Contact Button (Desktop) */}
-            <Link
-              to="/contact"
-              className="hidden xl:inline-flex items-center justify-center h-10 px-6 bg-modina-red hover:bg-modina-red-dark text-white text-[15px] font-semibold rounded-[8px] transition-all duration-250 shadow-design-sm hover:shadow-design-md hover:-translate-y-0.5 ml-1"
+            <a
+              href="tel:+8801321234510"
+              className="hidden xl:inline-flex items-center justify-center h-10 px-6 bg-modina-red hover:bg-modina-red-dark text-white text-[15px] font-semibold rounded-[8px] transition-all duration-250 shadow-design-sm hover:shadow-design-md hover:-translate-y-0.5 ml-1 gap-2"
             >
-              {t('nav.contact')}
-            </Link>
+              <Headphones className="w-4 h-4" />
+              +8801321234510
+            </a>
 
             {/* Mobile Actions: Search Icon + Talk to Sales + Menu Toggle */}
-            <div className="flex xl:hidden items-center gap-1.5 sm:gap-2 ml-1">
+            <div className="flex w-full xl:hidden items-center justify-between gap-1.5 sm:w-auto sm:justify-end sm:gap-2 sm:ml-1">
               <button
                 onClick={() => setIsMobileSearchOpen(true)}
-                className="flex md:hidden items-center justify-center w-9 h-9 text-modina-heading hover:text-modina-red transition-colors duration-200"
+                className="flex md:hidden items-center justify-center w-11 h-11 text-modina-heading hover:text-modina-red transition-colors duration-200"
                 aria-label="Search"
               >
                 <Search className="w-5 h-5" />
               </button>
               <a
-                href="tel:+8801234567890"
-                className="inline-flex items-center justify-center h-9 px-3 sm:px-4 bg-modina-red hover:bg-modina-red-dark text-white text-[12px] sm:text-[13px] font-bold rounded-[6px] transition-all duration-250 shadow-design-sm hover:shadow-design-md"
+                href="tel:+8801321234510"
+                className="inline-flex items-center justify-center h-11 px-2.5 sm:px-4 bg-modina-red hover:bg-modina-red-dark text-white text-[12px] sm:text-[13px] font-bold rounded-[6px] transition-all duration-250 shadow-design-sm hover:shadow-design-md gap-1.5 whitespace-nowrap"
               >
-                {t('nav.talk_to_sales')}
+                <Headphones className="hidden min-[360px]:block w-3.5 h-3.5" />
+                +8801321234510
               </a>
               <button
                 onClick={() => setIsOpen(true)}
-                className="flex items-center justify-center h-9 px-3 sm:px-4 border border-modina-border rounded-[6px] text-[12px] sm:text-[13px] font-bold text-modina-heading hover:text-modina-red hover:border-modina-red/40 hover:bg-modina-bg-alt transition-all duration-200"
+                className="flex items-center justify-center h-11 px-3 sm:px-4 border border-modina-border rounded-[6px] text-[12px] sm:text-[13px] font-bold text-modina-heading hover:text-modina-red hover:border-modina-red/40 hover:bg-modina-bg-alt transition-all duration-200"
                 aria-label="Open menu"
               >
                 {t('nav.menu')}
@@ -434,7 +433,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
-                className="absolute inset-0 bg-white z-[55] flex items-center px-4 sm:px-8 xl:hidden"
+                className="absolute inset-0 bg-white z-[55] flex items-center px-3 sm:px-8 xl:hidden"
               >
                 <div className="relative w-full flex items-center gap-3" ref={mobileSearchRef}>
                   <div className="relative flex-1 group">
@@ -449,7 +448,7 @@ export default function Navbar() {
                         setIsSearchFocused(true);
                       }}
                       onFocus={() => setIsSearchFocused(true)}
-                      className="w-full bg-modina-bg-section border border-transparent rounded-[8px] py-2 pl-10 pr-3 text-sm text-modina-text focus:outline-none focus:border-modina-red focus:bg-white focus:ring-2 focus:ring-modina-red/20 hover:border-modina-border transition-all duration-200 placeholder:text-modina-subtle"
+                      className="w-full bg-modina-bg-section border border-transparent rounded-[8px] py-2.5 pl-10 pr-3 text-base text-modina-text focus:outline-none focus:border-modina-red focus:bg-white focus:ring-2 focus:ring-modina-red/20 hover:border-modina-border transition-all duration-200 placeholder:text-modina-subtle"
                     />
                   </div>
                   <button
@@ -457,7 +456,7 @@ export default function Navbar() {
                       setIsMobileSearchOpen(false);
                       setSearchQuery('');
                     }}
-                    className="p-1.5 text-modina-muted hover:text-modina-red hover:bg-modina-bg-alt rounded-lg transition-colors duration-200"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center text-modina-muted hover:text-modina-red hover:bg-modina-bg-alt rounded-lg transition-colors duration-200"
                     aria-label="Close search"
                   >
                     <X className="w-5 h-5" />
@@ -506,21 +505,21 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
-            className="fixed top-0 right-0 bottom-0 w-[85vw] max-w-[400px] bg-white z-[60] flex flex-col border-l border-modina-border shadow-design-lg xl:hidden"
+              className="fixed top-0 right-0 bottom-0 w-[min(90vw,400px)] bg-white z-[60] flex flex-col border-l border-modina-border shadow-design-lg xl:hidden"
           >
             {/* Drawer Header */}
             <div className="flex justify-between items-center h-16 border-b border-modina-border px-4 sm:px-6 shrink-0">
               <Link to="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
                 <Logo className="w-8 h-8 object-contain" />
                 <div className="flex items-center gap-1">
-                  <span className="font-display font-extrabold text-modina-heading text-[14px] tracking-tight">
-                    MODINA <span className="text-modina-red">RIM</span>
+                  <span className="font-display font-extrabold text-[14px] tracking-tight whitespace-nowrap">
+                    <span className="text-modina-heading">Modina</span> <span className="text-modina-red">Rim & Parts Ltd.</span>
                   </span>
                 </div>
               </Link>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 text-modina-muted hover:text-modina-red hover:bg-modina-bg-alt rounded-lg transition-all duration-200"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center text-modina-muted hover:text-modina-red hover:bg-modina-bg-alt rounded-lg transition-all duration-200"
                 aria-label="Close menu"
               >
                 <X className="w-5 h-5" />
@@ -613,7 +612,7 @@ export default function Navbar() {
               <div className="flex items-center justify-between">
                 <button
                   onClick={toggleLanguage}
-                  className="flex items-center gap-2 text-modina-muted hover:text-modina-red transition-colors duration-200"
+                  className="flex min-h-11 items-center gap-2 text-modina-muted hover:text-modina-red transition-colors duration-200"
                 >
                   <Globe className="w-4 h-4" />
                   <span className="text-sm font-semibold">{lang === 'EN' ? 'বাংলা (BN)' : 'English (EN)'}</span>

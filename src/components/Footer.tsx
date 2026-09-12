@@ -13,12 +13,12 @@ export default function Footer() {
       <div className="border-b border-modina-divider py-10">
         <div className="container-premium flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
           {/* LEFT — Brand block */}
-          <div className="flex items-center gap-5">
+          <div className="flex min-w-0 items-center gap-4 sm:gap-5">
             <Link to="/" className="w-14 h-14 bg-white flex items-center justify-center shrink-0 rounded-xl border border-modina-border shadow-[var(--shadow-sm)]">
               <Logo className="w-9 h-9 object-contain" />
             </Link>
-            <div className="flex flex-col gap-1">
-              <span className="font-display font-bold text-modina-heading text-base tracking-tight">MODINA RIM &amp; PARTS LTD.</span>
+            <div className="flex min-w-0 flex-col gap-1">
+              <span className="font-display font-bold text-modina-heading text-sm sm:text-base tracking-tight">MODINA RIM &amp; PARTS LTD.</span>
               <span className="text-modina-muted text-sm font-medium">{t('footer.established')}</span>
             </div>
           </div>
@@ -27,18 +27,18 @@ export default function Footer() {
           <div className="hidden lg:block w-px h-10 bg-modina-divider mx-6" />
 
           {/* RIGHT — Stats */}
-          <div className="flex items-center">
-            <div className="flex flex-col items-center px-8 py-2">
+          <div className="grid w-full grid-cols-[1fr_auto_1fr_auto_1fr] items-center sm:w-auto">
+            <div className="flex min-w-0 flex-col items-center px-2 py-2 sm:px-8">
               <span className="text-2xl font-bold text-modina-red">ISO</span>
               <span className="text-modina-muted text-xs font-medium mt-1">Certified</span>
             </div>
             <div className="w-px h-8 bg-modina-divider" />
-            <div className="flex flex-col items-center px-8 py-2">
+            <div className="flex min-w-0 flex-col items-center px-2 py-2 sm:px-8">
               <span className="text-2xl font-bold text-modina-red">15+</span>
               <span className="text-modina-muted text-xs font-medium mt-1">Years</span>
             </div>
             <div className="w-px h-8 bg-modina-divider" />
-            <div className="flex flex-col items-center px-8 py-2">
+            <div className="flex min-w-0 flex-col items-center px-2 py-2 sm:px-8">
               <span className="text-2xl font-bold text-modina-red">21+</span>
               <span className="text-modina-muted text-xs font-medium mt-1">Products</span>
             </div>
@@ -63,7 +63,7 @@ export default function Footer() {
                   <input
                     type="email"
                     placeholder="your@email.com"
-                    className="flex-1 bg-transparent focus:outline-none text-sm text-modina-text placeholder:text-modina-subtle py-3 px-4 transition-colors"
+                    className="min-w-0 flex-1 bg-transparent focus:outline-none text-base text-modina-text placeholder:text-modina-subtle py-3 px-4 transition-colors"
                   />
                   <button type="button" className="bg-modina-red px-4 py-3 text-white text-xs font-bold tracking-wider uppercase hover:bg-modina-red-dark transition-colors duration-200">
                     {t('footer.join')}

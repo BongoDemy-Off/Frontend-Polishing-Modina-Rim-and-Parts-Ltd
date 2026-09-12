@@ -18,7 +18,7 @@ export default function Gallery() {
     : galleryItems.filter(g => g.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-modina-bg text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-modina-bg text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>Gallery | Modina Rim &amp; Parts Ltd. — Factory Tour</title>
         <meta name="description" content="Take a virtual tour of Modina Rim & Parts Ltd.'s ISO-certified manufacturing facility in Jashore, Bangladesh. View our factory floor, CNC machinery, quality labs, and finished products." />
@@ -35,7 +35,7 @@ export default function Gallery() {
 
         <div className="w-24 h-[2px] bg-modina-red mx-auto mb-10" />
 
-        <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
           {letters.map((letter, i) => (
             <motion.span
               key={i}
@@ -66,9 +66,9 @@ export default function Gallery() {
       </section>
 
       {/* SECTION 2 — FILTER BAR */}
-      <div className="sticky top-[72px] z-30 w-full bg-white/90 backdrop-blur-md border-t border-modina-border border-b shadow-design-sm">
-        <div className="container mx-auto px-6 md:px-12 lg:px-24 h-14 flex items-center justify-between overflow-x-auto">
-          <div className="flex items-center h-full gap-0">
+      <div className="sticky top-[112px] sm:top-16 z-30 w-full bg-white/90 backdrop-blur-md border-t border-modina-border border-b shadow-design-sm">
+        <div className="container mx-auto px-4 md:px-12 lg:px-24 h-14 flex items-center justify-between overflow-x-auto no-scrollbar">
+          <div className="flex items-center h-full gap-0 shrink-0">
             {categories.map((cat, idx) => {
               const count = cat === 'All' ? galleryItems.length : galleryItems.filter(g => g.category === cat).length;
               const isActive = activeCategory === cat;
@@ -178,7 +178,7 @@ export default function Gallery() {
                 {/* Close button */}
                 <button
                   onClick={() => setLightboxItem(null)}
-                  className="absolute -top-10 right-0 text-modina-muted text-xs font-bold tracking-widest uppercase hover:text-white transition-all duration-300 ease-in-out flex items-center gap-2 z-10"
+                  className="absolute -top-12 right-0 flex h-11 items-center gap-2 px-2 text-modina-muted text-xs font-bold tracking-widest uppercase hover:text-white transition-all duration-300 ease-in-out z-10"
                 >
                   Close <X className="w-3 h-3" />
                 </button>

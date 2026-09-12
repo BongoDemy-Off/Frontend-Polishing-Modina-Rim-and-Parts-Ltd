@@ -29,7 +29,7 @@ export default function Mission() {
   const ctaInView = useInView(ctaRef, { once: true, margin: '-60px' });
 
   return (
-    <div className="min-h-screen bg-white text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-white text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>Our Mission &amp; Values | Modina Rim &amp; Parts Ltd.</title>
         <meta name="description" content="Modina Rim & Parts Ltd. is guided by five core values: precision, integrity, reliability, sustainability, and excellence. Discover the philosophy behind our manufacturing standards." />
@@ -48,7 +48,7 @@ export default function Mission() {
 
         <div className="w-24 h-[2px] bg-modina-red mx-auto mb-10" />
 
-        <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
           {letters.map((letter, i) => (
             letter === " " ? (
               <span key={i} className="w-[0.3em]">&nbsp;</span>
@@ -83,18 +83,18 @@ export default function Mission() {
 
         <hr className="w-full max-w-md border-modina-divider mx-auto mt-10 mb-10" />
 
-        <div className="flex items-center justify-center gap-0">
-          <div className="flex flex-col items-center px-10 md:px-14">
+        <div className="responsive-stat-strip grid w-full max-w-xl grid-cols-[1fr_auto_1fr_auto_1fr] items-center mx-auto">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">3</span>
             <span className="text-xs font-bold tracking-widest text-modina-muted uppercase mt-1">Core Values</span>
           </div>
           <span className="w-[0.5px] h-8 bg-modina-divider" />
-          <div className="flex flex-col items-center px-10 md:px-14">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">15+</span>
             <span className="text-xs font-bold tracking-widest text-modina-muted uppercase mt-1">Years of Purpose</span>
           </div>
           <span className="w-[0.5px] h-8 bg-modina-divider" />
-          <div className="flex flex-col items-center px-10 md:px-14">
+          <div className="flex min-w-0 flex-col items-center px-1 sm:px-10 md:px-14">
             <span className="text-3xl md:text-4xl font-display font-bold text-modina-red">ISO</span>
             <span className="text-xs font-bold tracking-widest text-modina-muted uppercase mt-1">Certified</span>
           </div>
@@ -102,7 +102,7 @@ export default function Mission() {
       </section>
 
       {/* SECTION 2 — MISSION STATEMENT SPLIT */}
-      <section className="w-full border-b border-modina-divider" ref={missionRef}>
+      <section className="w-full overflow-x-clip border-b border-modina-divider" ref={missionRef}>
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <motion.div 
             initial={{ opacity: 0, x: -40 }}
@@ -223,7 +223,7 @@ export default function Mission() {
       </section>
 
       {/* SECTION 5 — LEADERSHIP PHILOSOPHY SPLIT */}
-      <section className="w-full border-b border-modina-divider bg-modina-bg-alt" ref={leaderRef}>
+      <section className="w-full overflow-x-clip border-b border-modina-divider bg-modina-bg-alt" ref={leaderRef}>
         <div className="grid grid-cols-1 lg:grid-cols-2 group">
           <div className="relative h-[400px] lg:h-[560px] overflow-hidden">
             <motion.div

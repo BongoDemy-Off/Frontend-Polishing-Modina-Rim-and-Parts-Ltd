@@ -61,7 +61,7 @@ export default function FAQ() {
   const toggle = (id: number) => setOpenId(prev => prev === id ? null : id);
 
   return (
-    <div className="min-h-screen bg-modina-bg text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-modina-bg text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>FAQ | Modina Rim &amp; Parts Ltd. — Frequently Asked Questions</title>
         <meta name="description" content="Frequently asked questions about Modina Rim & Parts Ltd. — product specifications, minimum order quantities, ISO certifications, shipping across Bangladesh, export terms, pricing, and distributor partnerships." />
@@ -76,7 +76,7 @@ export default function FAQ() {
           <span className="text-modina-muted">FAQ</span>
         </div>
         <div className="w-24 h-[2px] bg-modina-red mx-auto mb-10" />
-        <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
           {letters.map((letter, i) => (
             <motion.span key={i} initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: i * 0.055, ease: [0.16, 1, 0.3, 1] }}>
               {letter}
@@ -100,10 +100,10 @@ export default function FAQ() {
       </section>
 
       {/* SECTION 2 — FILTER + SEARCH BAR */}
-      <div className="sticky top-[72px] z-30 w-full bg-white/90 backdrop-blur-md border-t border-modina-border border-b shadow-design-sm">
-        <div className="container mx-auto px-6 md:px-12 lg:px-24 h-14 flex items-center justify-between gap-4 overflow-x-auto">
+      <div className="sticky top-[112px] sm:top-16 z-30 w-full bg-white/90 backdrop-blur-md border-t border-modina-border border-b shadow-design-sm">
+        <div className="container mx-auto flex min-h-[104px] flex-col-reverse gap-2 px-4 py-2 md:px-12 xl:h-14 xl:min-h-0 xl:flex-row xl:items-center xl:justify-between xl:px-24 xl:py-0">
           {/* Category pills */}
-          <div className="flex items-center h-full gap-0 shrink-0">
+          <div className="flex w-full min-w-0 items-center gap-0 overflow-x-auto no-scrollbar xl:w-auto xl:shrink-0">
             {categories.map((cat, idx) => {
               const count = cat === 'All' ? faqs.length : faqs.filter(f => f.category === cat).length;
               const isActive = activeCategory === cat;
@@ -124,14 +124,14 @@ export default function FAQ() {
           </div>
 
           {/* Search */}
-          <div className="relative flex items-center shrink-0">
+          <div className="relative flex w-full items-center shrink-0 xl:w-auto">
             <Search className="w-3.5 h-3.5 text-modina-subtle absolute left-0" />
             <input
               type="text"
               placeholder="Search questions..."
               value={searchQuery}
               onChange={e => { setSearchQuery(e.target.value); setOpenId(null); }}
-              className="bg-transparent border-b border-modina-divider focus:border-modina-red outline-none text-xs text-modina-heading placeholder:text-modina-subtle w-36 focus:w-52 transition-all pl-6 pb-1"
+              className="w-full bg-transparent border-b border-modina-divider focus:border-modina-red outline-none text-base text-modina-heading placeholder:text-modina-subtle transition-all pl-6 pb-1 xl:w-36 xl:text-xs xl:focus:w-52"
             />
           </div>
         </div>

@@ -69,7 +69,7 @@ export default function About() {
   const yearOpacity = [1, 0.55, 0.4, 0.3, 0.2];
 
   return (
-    <div className="min-h-screen bg-white text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-white text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>About Us | Modina Rim &amp; Parts Ltd. — Since 2010, Jashore Bangladesh</title>
         <meta name="description" content="Founded in 2010, Modina Rim &amp; Parts Ltd. is a triple ISO-certified automotive component manufacturer in Jashore with 15+ years of precision engineering and 21+ product SKUs." />
@@ -100,14 +100,14 @@ export default function About() {
         <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }} style={{ transformOrigin: 'left' }} className="w-24 h-0.5 bg-modina-red mx-auto my-10" />
         <p className="text-modina-muted text-sm font-medium">{t('about.hero_banner_desc')}</p>
         <hr className="w-full max-w-md border-modina-border mx-auto mt-10 mb-10" />
-        <div className="flex items-center justify-center">
+        <div className="responsive-stat-strip grid w-full max-w-xl grid-cols-[1fr_auto_1fr_auto_1fr] items-center mx-auto">
           {[
             { value: t('i18n_lang') === 'bn' ? '২০১০' : '2010', label: t('about.est') },
             { value: null, label: t('about.experience'), countTarget: 15, suffix: '+' },
             { value: 'ISO', label: t('about.certification') }
           ].map((item, idx, arr) => (
             <React.Fragment key={idx}>
-              <div className="flex flex-col items-center px-10 md:px-14 py-2">
+              <div className="flex min-w-0 flex-col items-center px-1 py-2 sm:px-10 md:px-14">
                 <span className="font-display font-bold text-modina-red" style={{ fontSize: 'clamp(28px, 3vw, 44px)' }}>
                   {item.value ?? <CountUp target={item.countTarget!} suffix={item.suffix} />}
                 </span>
@@ -120,7 +120,7 @@ export default function About() {
       </section>
 
       {/* ─── FOUNDING STORY ─── */}
-      <section className="w-full border-b border-modina-divider bg-white" ref={foundingRef}>
+      <section className="w-full overflow-x-clip border-b border-modina-divider bg-white" ref={foundingRef}>
         <div className="container-premium py-20 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-0">
           <motion.div initial={{ opacity: 0, x: -40 }} animate={foundingInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="flex flex-col justify-center pr-0 lg:pr-16 border-r-0 lg:border-r border-modina-border py-10 lg:py-0">
             <p className="font-display font-bold text-modina-divider leading-none select-none tracking-tight" style={{ fontSize: 'clamp(80px, 14vw, 180px)' }}>

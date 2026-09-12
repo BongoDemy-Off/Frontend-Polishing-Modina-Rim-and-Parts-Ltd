@@ -5,7 +5,7 @@ import { ArrowRight, Home } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-white text-modina-text flex flex-col items-center justify-center px-6 pt-[72px]">
+    <div className="min-h-screen bg-white text-modina-text flex flex-col items-center justify-center px-6 pt-[112px] sm:pt-[72px]">
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         animate={{ opacity: 1, y: 0 }}

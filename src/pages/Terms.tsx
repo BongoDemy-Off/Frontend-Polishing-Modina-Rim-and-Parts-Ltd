@@ -109,7 +109,7 @@ export default function Terms() {
   const ctaInView = useInView(ctaRef, { once: true, margin: '-60px' });
 
   return (
-    <div className="min-h-screen bg-white text-modina-text pt-[72px]">
+    <div className="min-h-screen bg-white text-modina-text pt-[112px] sm:pt-[72px]">
       <Helmet>
         <title>Terms of Service | Modina Rim &amp; Parts Ltd.</title>
         <meta name="description" content="Terms of Service for Modina Rim & Parts Ltd. — governing use of our website, intellectual property, product orders, disclaimers, and applicable Bangladesh law." />
@@ -126,7 +126,7 @@ export default function Terms() {
 
         <div className="w-24 h-[2px] bg-modina-red mx-auto mb-10" />
 
-        <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-display font-bold tracking-tight text-modina-heading uppercase leading-none flex items-center justify-center flex-wrap">
           {letters.map((letter, i) => (
             <motion.span
               key={i}

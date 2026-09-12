@@ -1,3 +1,9 @@
+export interface ProductImage {
+  src: string;
+  alt: string;
+  role?: 'product' | 'engineering' | 'assembly';
+}
+
 export interface Product {
   id: number;
   name: string;
@@ -6,12 +12,25 @@ export interface Product {
   material: string;
   certification: string;
   availability: string;
+  images?: ProductImage[];
 }
 
 export const productsData: Product[] = [
-  { id: 1, name: 'Box Frame Bearing & Racer (Black Blue & Red)', category: 'Hardware', description: 'Premium quality box frame bearing and racer, available in black, blue, and red finishes for maximum durability.', material: 'High-Carbon Steel', certification: 'ISO 9001:2015', availability: 'In Stock' },
-  { id: 2, name: 'Motor Cycle Center Stand', category: 'Motorcycle', description: 'Heavy-duty center stand engineered for perfect balance and stability.', material: 'Reinforced Steel Alloy', certification: 'ISO 9001:2015', availability: 'In Stock' },
-  { id: 3, name: 'Motor Cycle Double Stand', category: 'Motorcycle', description: 'Reinforced double stand providing superior support and longevity.', material: 'Reinforced Steel Alloy', certification: 'ISO 9001:2015', availability: 'In Stock' },
+  { id: 1, name: 'Box Frame Bearing & Racer (Black Blue & Red)', category: 'Hardware', description: 'Premium quality box frame bearing and racer, available in black, blue, and red finishes for maximum durability.', material: 'High-Carbon Steel', certification: 'ISO 9001:2015', availability: 'In Stock', images: [
+    { src: '/products/sku-001/01-product.png', alt: 'Modina Heavy Duty Frame — product view', role: 'product' },
+    { src: '/products/sku-001/02-engineering.jpg', alt: 'Modina Heavy Duty Frame — engineering view', role: 'engineering' },
+    { src: '/products/sku-001/03-assembly.png', alt: 'Modina Heavy Duty Frame — assembly view', role: 'assembly' }
+  ] },
+  { id: 2, name: 'Motor Cycle Center Stand', category: 'Motorcycle', description: 'Heavy-duty center stand engineered for perfect balance and stability.', material: 'Reinforced Steel Alloy', certification: 'ISO 9001:2015', availability: 'In Stock', images: [
+    { src: '/products/sku-002/01-product.png', alt: 'Motor Cycle Center Stand — product view', role: 'product' },
+    { src: '/products/sku-002/02-engineering.jpg', alt: 'Motor Cycle Center Stand — engineering view', role: 'engineering' },
+    { src: '/products/sku-002/03-assembly.png', alt: 'Motor Cycle Center Stand — assembly view', role: 'assembly' }
+  ] },
+  { id: 3, name: 'Motor Cycle Double Stand', category: 'Motorcycle', description: 'Reinforced double stand providing superior support and longevity.', material: 'Reinforced Steel Alloy', certification: 'ISO 9001:2015', availability: 'In Stock', images: [
+    { src: '/products/sku-003/01-product.png', alt: 'Motor Cycle Double Stand — product view', role: 'product' },
+    { src: '/products/sku-003/02-engineering.jpg', alt: 'Motor Cycle Double Stand — engineering view', role: 'engineering' },
+    { src: '/products/sku-003/03-assembly.png', alt: 'Motor Cycle Double Stand — assembly view', role: 'assembly' }
+  ] },
   { id: 4, name: 'Motor Cycle Foot Rest Rod', category: 'Motorcycle', description: 'Ergonomic and highly durable foot rest rod for enhanced rider comfort.', material: 'Forged Steel', certification: 'ISO 9001:2015', availability: 'In Stock' },
   { id: 5, name: 'Motor Cycle Handlebar', category: 'Motorcycle', description: 'Precision-bent motorcycle handlebar offering optimal control and vibration reduction.', material: 'Chromoly Steel', certification: 'ISO 9001:2015', availability: 'In Stock' },
   { id: 6, name: 'Motor Cycle Leg Guard', category: 'Motorcycle', description: 'Robust leg guard designed to protect the rider and vehicle during impacts.', material: 'Heavy-Duty Steel Tubing', certification: 'ISO 9001:2015', availability: 'In Stock' },
