@@ -81,9 +81,9 @@ export default function Dashboard() {
           <SectionCard title="Quick Actions" description="Links open planned module placeholders">
             <div className="grid grid-cols-1 gap-2 p-4 min-[420px]:grid-cols-2 xl:grid-cols-1">
               {[
-                { label: 'Add Product', path: '/admin/products', icon: Plus },
-                { label: 'New Blog Post', path: '/admin/blog', icon: FileText },
-                { label: 'New News Article', path: '/admin/news', icon: Newspaper },
+                { label: 'Add Product', path: '/admin/products/new', icon: Plus },
+                { label: 'New Blog Post', path: '/admin/blog/new', icon: FileText },
+                { label: 'New News Article', path: '/admin/news/new', icon: Newspaper },
                 { label: 'Upload Media', path: '/admin/media', icon: ImagePlus },
               ].map((action) => {
                 const Icon = action.icon;

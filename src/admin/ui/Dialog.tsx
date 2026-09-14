@@ -1,5 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react';
-import { AlertTriangle, X } from 'lucide-react';
+import { AlertTriangle, Info, X } from 'lucide-react';
+import type { AdminButtonVariant } from './Button';
 import { AdminButton } from './Button';
 
 interface AdminDialogProps {
@@ -9,11 +10,15 @@ interface AdminDialogProps {
   children?: ReactNode;
   onClose: () => void;
   onConfirm?: () => void;
+  confirmLabel?: string | null;
+  cancelLabel?: string;
+  confirmVariant?: AdminButtonVariant;
+  tone?: 'warning' | 'info';
 }
 
 const focusableSelector = 'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-export function AdminDialog({ open, title, description, children, onClose, onConfirm }: AdminDialogProps) {
+export function AdminDialog({ open, title, description, children, onClose, onConfirm, confirmLabel = 'Confirm demo action', cancelLabel = 'Cancel', confirmVariant = 'destructive', tone = 'warning' }: AdminDialogProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
@@ -62,7 +67,7 @@ export function AdminDialog({ open, title, description, children, onClose, onCon
     >
       <div ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="admin-dialog-title" aria-describedby="admin-dialog-description" className="w-full max-w-lg rounded-t-2xl border border-[var(--admin-border)] bg-white p-5 shadow-2xl sm:rounded-xl sm:p-6">
         <div className="flex items-start gap-3">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-amber-700"><AlertTriangle className="h-5 w-5" aria-hidden="true" /></span>
+          <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${tone === 'info' ? 'bg-sky-50 text-sky-700' : 'bg-amber-50 text-amber-700'}`}>{tone === 'info' ? <Info className="h-5 w-5" aria-hidden="true" /> : <AlertTriangle className="h-5 w-5" aria-hidden="true" />}</span>
           <div className="min-w-0 flex-1">
             <h2 id="admin-dialog-title" className="text-lg font-extrabold text-[var(--admin-heading)]">{title}</h2>
             <p id="admin-dialog-description" className="mt-1 text-sm leading-6 text-[var(--admin-muted)]">{description}</p>
@@ -73,8 +78,8 @@ export function AdminDialog({ open, title, description, children, onClose, onCon
         </div>
         {children && <div className="mt-5 rounded-lg bg-slate-50 p-4 text-sm text-[var(--admin-text)]">{children}</div>}
         <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-end">
-          <AdminButton variant="secondary" onClick={onClose}>Cancel</AdminButton>
-          <AdminButton variant="destructive" onClick={() => { onConfirm?.(); onClose(); }}>Confirm demo action</AdminButton>
+          <AdminButton variant="secondary" onClick={onClose}>{cancelLabel}</AdminButton>
+          {confirmLabel && <AdminButton variant={confirmVariant} onClick={() => { onConfirm?.(); onClose(); }}>{confirmLabel}</AdminButton>}
         </div>
       </div>
     </div>

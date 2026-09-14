@@ -3,28 +3,42 @@ import { FileImage, ImagePlus, RefreshCw, Trash2, UploadCloud } from 'lucide-rea
 import { AdminButton } from './Button';
 import { AdminInput } from './FormControls';
 
-interface LocalImageMeta {
+export interface LocalImageSelection {
+  previewUrl: string;
   name: string;
   size: string;
   dimensions: string;
 }
 
-export function MediaUpload({ initialDemo = false }: { initialDemo?: boolean }) {
+interface MediaUploadProps {
+  initialDemo?: boolean;
+  initialSrc?: string;
+  initialMeta?: Omit<LocalImageSelection, 'previewUrl'>;
+  onChange?: (selection: LocalImageSelection | null) => void;
+  showAltField?: boolean;
+  altValue?: string;
+  onAltChange?: (value: string) => void;
+  previewAlt?: string;
+  objectUrlOwnership?: 'component' | 'consumer';
+}
+
+export function MediaUpload({ initialDemo = false, initialSrc, initialMeta, onChange, showAltField = true, altValue, onAltChange, previewAlt = 'Local media preview', objectUrlOwnership = 'component' }: MediaUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(initialDemo ? '/products/sku-002/01-product.png' : null);
-  const [meta, setMeta] = useState<LocalImageMeta | null>(initialDemo ? {
-    name: 'motor-cycle-center-stand-demo.png',
-    size: 'Static demo asset',
-    dimensions: 'Preview dimensions',
+  const demoSrc = initialSrc ?? (initialDemo ? '/products/sku-002/01-product.png' : null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(demoSrc);
+  const [meta, setMeta] = useState<Omit<LocalImageSelection, 'previewUrl'> | null>(demoSrc ? initialMeta ?? {
+    name: demoSrc.split('/').pop() ?? 'Existing image',
+    size: 'Existing production asset',
+    dimensions: '4:3 preview',
   } : null);
   const [error, setError] = useState('');
   const [dragging, setDragging] = useState(false);
 
   useEffect(() => {
     return () => {
-      if (previewUrl?.startsWith('blob:')) URL.revokeObjectURL(previewUrl);
+      if (objectUrlOwnership === 'component' && previewUrl?.startsWith('blob:')) URL.revokeObjectURL(previewUrl);
     };
-  }, [previewUrl]);
+  }, [objectUrlOwnership, previewUrl]);
 
   const useFile = (file?: File) => {
     setError('');
@@ -41,11 +55,13 @@ export function MediaUpload({ initialDemo = false }: { initialDemo?: boolean }) 
     const objectUrl = URL.createObjectURL(file);
     const image = new window.Image();
     image.onload = () => {
-      setMeta({
+      const nextMeta = {
         name: file.name,
         size: `${(file.size / 1024 / 1024).toFixed(2)} MB`,
         dimensions: `${image.naturalWidth} × ${image.naturalHeight}px`,
-      });
+      };
+      setMeta(nextMeta);
+      onChange?.({ previewUrl: objectUrl, ...nextMeta });
     };
     image.src = objectUrl;
     setPreviewUrl(objectUrl);
@@ -55,6 +71,7 @@ export function MediaUpload({ initialDemo = false }: { initialDemo?: boolean }) 
     setPreviewUrl(null);
     setMeta(null);
     setError('');
+    onChange?.(null);
     if (inputRef.current) inputRef.current.value = '';
   };
 
@@ -79,7 +96,7 @@ export function MediaUpload({ initialDemo = false }: { initialDemo?: boolean }) 
       ) : (
         <div className="grid gap-4 rounded-xl border border-[var(--admin-border)] p-4 sm:grid-cols-[160px_minmax(0,1fr)]">
           <div className="aspect-square overflow-hidden rounded-lg bg-slate-100">
-            <img src={previewUrl} alt="Local media preview" className="h-full w-full object-contain" />
+            <img src={previewUrl} alt={previewAlt} className="h-full w-full object-contain" />
           </div>
           <div className="min-w-0">
             <div className="flex items-start gap-3">
@@ -97,7 +114,7 @@ export function MediaUpload({ initialDemo = false }: { initialDemo?: boolean }) 
         </div>
       )}
       {error && <p role="alert" className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm font-semibold text-red-800">{error}</p>}
-      <AdminInput label="Alternative text" placeholder="Describe the image for accessibility" helpText="UI example only. This value is not saved or uploaded." />
+      {showAltField && <AdminInput label="Alternative text" placeholder="Describe the image for accessibility" helpText="UI example only. This value is not saved or uploaded." value={altValue} onChange={(event) => onAltChange?.(event.target.value)} />}
     </div>
   );
 }

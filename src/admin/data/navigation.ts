@@ -105,5 +105,5 @@ export const foundationMeta: AdminRouteMeta = {
 export function getAdminRouteMeta(pathname: string): AdminRouteMeta {
   if (pathname === '/admin' || pathname === '/admin/') return dashboardMeta;
   if (pathname === foundationMeta.path) return foundationMeta;
-  return adminRouteMeta.find((item) => item.path === pathname) ?? dashboardMeta;
+  return adminRouteMeta.find((item) => pathname === item.path || pathname.startsWith(`${item.path}/`)) ?? dashboardMeta;
 }

@@ -76,15 +76,16 @@ export function AdminTextarea({ label, helpText, error, id: suppliedId, classNam
 interface AdminSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label: string;
   helpText?: string;
+  error?: string;
   children: ReactNode;
 }
 
-export function AdminSelect({ label, helpText, id: suppliedId, className, children, ...props }: AdminSelectProps) {
+export function AdminSelect({ label, helpText, error, id: suppliedId, className, children, required, ...props }: AdminSelectProps) {
   const generatedId = useId();
   const id = suppliedId ?? generatedId;
   return (
-    <FieldShell id={id} label={label} helpText={helpText}>
-      <select id={id} className={cn('admin-control px-3.5 py-2.5', className)} {...props}>{children}</select>
+    <FieldShell id={id} label={label} helpText={helpText} error={error} required={required}>
+      <select id={id} required={required} aria-invalid={Boolean(error)} aria-describedby={(error || helpText) ? `${id}-${error ? 'error' : 'help'}` : undefined} className={cn('admin-control px-3.5 py-2.5', className)} {...props}>{children}</select>
     </FieldShell>
   );
 }

@@ -5,6 +5,8 @@ export interface DataColumn<Row> {
   label: string;
   render: (row: Row) => ReactNode;
   width?: string;
+  headerClassName?: string;
+  cellClassName?: string;
 }
 
 interface ResponsiveDataListProps<Row extends { id: string | number }> {
@@ -12,9 +14,10 @@ interface ResponsiveDataListProps<Row extends { id: string | number }> {
   columns: DataColumn<Row>[];
   getPrimaryLabel: (row: Row) => string;
   empty?: ReactNode;
+  renderMobile?: (row: Row) => ReactNode;
 }
 
-export function ResponsiveDataList<Row extends { id: string | number }>({ rows, columns, getPrimaryLabel, empty }: ResponsiveDataListProps<Row>) {
+export function ResponsiveDataList<Row extends { id: string | number }>({ rows, columns, getPrimaryLabel, empty, renderMobile }: ResponsiveDataListProps<Row>) {
   if (rows.length === 0) return <>{empty}</>;
 
   return (
@@ -24,7 +27,7 @@ export function ResponsiveDataList<Row extends { id: string | number }>({ rows, 
           <thead className="bg-[var(--admin-surface-subtle)] text-xs uppercase tracking-[0.06em] text-[var(--admin-muted)]">
             <tr>
               {columns.map((column) => (
-                <th key={column.key} scope="col" style={{ width: column.width }} className="border-b border-[var(--admin-border)] px-4 py-3 font-extrabold first:pl-5 last:pr-5">
+                <th key={column.key} scope="col" style={{ width: column.width }} className={`border-b border-[var(--admin-border)] px-4 py-3 font-extrabold first:pl-5 last:pr-5 ${column.headerClassName ?? ''}`}>
                   {column.label}
                 </th>
               ))}
@@ -34,7 +37,7 @@ export function ResponsiveDataList<Row extends { id: string | number }>({ rows, 
             {rows.map((row) => (
               <tr key={row.id} className="border-b border-[var(--admin-border)] last:border-b-0 hover:bg-slate-50/70">
                 {columns.map((column) => (
-                  <td key={column.key} className="min-w-0 overflow-wrap-anywhere px-4 py-3.5 align-top text-[var(--admin-text)] first:pl-5 last:pr-5">
+                  <td key={column.key} className={`min-w-0 overflow-wrap-anywhere px-4 py-3.5 align-top text-[var(--admin-text)] first:pl-5 last:pr-5 ${column.cellClassName ?? ''}`}>
                     <div className="min-w-0 break-words">{column.render(row)}</div>
                   </td>
                 ))}
@@ -44,7 +47,9 @@ export function ResponsiveDataList<Row extends { id: string | number }>({ rows, 
         </table>
       </div>
       <div className="divide-y divide-[var(--admin-border)] md:hidden">
-        {rows.map((row) => (
+        {rows.map((row) => renderMobile ? (
+          <article key={row.id} className="min-w-0 px-4 py-4" aria-label={getPrimaryLabel(row)}>{renderMobile(row)}</article>
+        ) : (
           <article key={row.id} className="min-w-0 px-4 py-4" aria-label={getPrimaryLabel(row)}>
             <dl className="space-y-3">
               {columns.map((column) => (

@@ -1,12 +1,38 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { AlertCircle, CheckCircle2, Languages } from 'lucide-react';
 import { AdminInput, AdminTextarea } from './FormControls';
 import { cn } from '../../lib/utils';
 
-type Language = 'en' | 'bn';
+export type AdminLanguage = 'en' | 'bn';
+
+interface LanguageTabsProps {
+  language: AdminLanguage;
+  onLanguageChange: (language: AdminLanguage) => void;
+  completion?: Record<AdminLanguage, { complete: boolean; label: string }>;
+  children: ReactNode;
+  ariaLabel?: string;
+}
+
+export function LanguageTabs({ language, onLanguageChange, completion, children, ariaLabel = 'Content language' }: LanguageTabsProps) {
+  const en = completion?.en ?? { complete: true, label: 'Complete' };
+  const bn = completion?.bn ?? { complete: false, label: 'Missing content' };
+  return (
+    <div className="space-y-5">
+      <div role="tablist" aria-label={ariaLabel} className="inline-flex w-full rounded-lg border border-[var(--admin-border)] bg-slate-100 p-1 sm:w-auto">
+        <button type="button" role="tab" aria-selected={language === 'en'} onClick={() => onLanguageChange('en')} className={cn('flex min-h-11 flex-1 items-center justify-center gap-2 rounded-md px-4 text-sm font-bold sm:flex-none', language === 'en' ? 'bg-white text-[var(--admin-heading)] shadow-sm' : 'text-[var(--admin-muted)]')}>
+          {en.complete ? <CheckCircle2 className="h-4 w-4 text-emerald-600" aria-hidden="true" /> : <AlertCircle className="h-4 w-4 text-amber-600" aria-hidden="true" />} English <span className={`hidden text-xs font-medium sm:inline ${en.complete ? 'text-emerald-700' : 'text-amber-700'}`}>{en.label}</span>
+        </button>
+        <button type="button" role="tab" aria-selected={language === 'bn'} onClick={() => onLanguageChange('bn')} className={cn('admin-bn-text flex min-h-11 flex-1 items-center justify-center gap-2 rounded-md px-4 text-sm font-bold sm:flex-none', language === 'bn' ? 'bg-white text-[var(--admin-heading)] shadow-sm' : 'text-[var(--admin-muted)]')}>
+          {bn.complete ? <CheckCircle2 className="h-4 w-4 text-emerald-600" aria-hidden="true" /> : <AlertCircle className="h-4 w-4 text-amber-600" aria-hidden="true" />} বাংলা <span className={`hidden text-xs font-medium sm:inline ${bn.complete ? 'text-emerald-700' : 'text-amber-700'}`}>{bn.label}</span>
+        </button>
+      </div>
+      <div role="tabpanel" className={cn(language === 'bn' && 'admin-bn-text')}>{children}</div>
+    </div>
+  );
+}
 
 export function MultilingualFields() {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<AdminLanguage>('en');
 
   return (
     <div className="space-y-5">
@@ -21,28 +47,8 @@ export function MultilingualFields() {
         </div>
       </div>
 
-      <div role="tablist" aria-label="Content language" className="inline-flex w-full rounded-lg border border-[var(--admin-border)] bg-slate-100 p-1 sm:w-auto">
-        <button
-          type="button"
-          role="tab"
-          aria-selected={language === 'en'}
-          onClick={() => setLanguage('en')}
-          className={cn('flex min-h-11 flex-1 items-center justify-center gap-2 rounded-md px-4 text-sm font-bold sm:flex-none', language === 'en' ? 'bg-white text-[var(--admin-heading)] shadow-sm' : 'text-[var(--admin-muted)]')}
-        >
-          <CheckCircle2 className="h-4 w-4 text-emerald-600" aria-hidden="true" /> English <span className="hidden text-xs font-medium text-emerald-700 sm:inline">Complete</span>
-        </button>
-        <button
-          type="button"
-          role="tab"
-          aria-selected={language === 'bn'}
-          onClick={() => setLanguage('bn')}
-          className={cn('admin-bn-text flex min-h-11 flex-1 items-center justify-center gap-2 rounded-md px-4 text-sm font-bold sm:flex-none', language === 'bn' ? 'bg-white text-[var(--admin-heading)] shadow-sm' : 'text-[var(--admin-muted)]')}
-        >
-          <AlertCircle className="h-4 w-4 text-amber-600" aria-hidden="true" /> বাংলা <span className="hidden text-xs font-medium text-amber-700 sm:inline">২টি ঘর বাকি</span>
-        </button>
-      </div>
-
-      <div role="tabpanel" className={cn('grid gap-4', language === 'bn' && 'admin-bn-text')}>
+      <LanguageTabs language={language} onLanguageChange={setLanguage} completion={{ en: { complete: true, label: 'Complete' }, bn: { complete: false, label: '২টি ঘর বাকি' } }}>
+      <div className="grid gap-4">
         <div className="flex items-center gap-2 text-xs font-bold text-[var(--admin-muted)]"><Languages className="h-4 w-4" aria-hidden="true" /> {language === 'en' ? 'English content preview' : 'বাংলা কনটেন্ট প্রিভিউ'}</div>
         {language === 'en' ? (
           <>
@@ -56,6 +62,7 @@ export function MultilingualFields() {
           </>
         )}
       </div>
+      </LanguageTabs>
       <p className="text-xs text-[var(--admin-muted)]">Language switching is local UI state only. No translation is saved or submitted.</p>
     </div>
   );

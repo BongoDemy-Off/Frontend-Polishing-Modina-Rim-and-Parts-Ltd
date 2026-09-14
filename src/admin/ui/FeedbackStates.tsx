@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { AlertTriangle, CheckCircle2, Inbox, LoaderCircle, X } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, Inbox, Info, LoaderCircle, X } from 'lucide-react';
 import { AdminButton } from './Button';
 
 export function EmptyState({ title, description, action }: { title: string; description: string; action?: ReactNode }) {
@@ -36,15 +36,23 @@ export function ErrorState({ onRetry }: { onRetry?: () => void }) {
   );
 }
 
-export function DemoToast({ onClose }: { onClose: () => void }) {
+const toastTones = {
+  success: { shell: 'border-emerald-200 bg-emerald-50', icon: 'text-emerald-700', heading: 'text-emerald-900', text: 'text-emerald-800', close: 'text-emerald-800 hover:bg-emerald-100', Icon: CheckCircle2 },
+  warning: { shell: 'border-amber-200 bg-amber-50', icon: 'text-amber-700', heading: 'text-amber-950', text: 'text-amber-900', close: 'text-amber-800 hover:bg-amber-100', Icon: AlertTriangle },
+  info: { shell: 'border-sky-200 bg-sky-50', icon: 'text-sky-700', heading: 'text-sky-950', text: 'text-sky-900', close: 'text-sky-800 hover:bg-sky-100', Icon: Info },
+};
+
+export function DemoToast({ onClose, title = 'Local UI feedback example', description = 'Nothing was saved or sent to a backend.', tone = 'success' }: { onClose: () => void; title?: string; description?: string; tone?: keyof typeof toastTones }) {
+  const config = toastTones[tone];
+  const Icon = config.Icon;
   return (
-    <div role="status" className="flex items-start gap-3 rounded-lg border border-emerald-200 bg-emerald-50 p-4 shadow-sm">
-      <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-700" aria-hidden="true" />
+    <div role="status" aria-live="polite" className={`flex items-start gap-3 rounded-lg border p-4 shadow-sm ${config.shell}`}>
+      <Icon className={`mt-0.5 h-5 w-5 shrink-0 ${config.icon}`} aria-hidden="true" />
       <div className="min-w-0 flex-1">
-        <p className="font-extrabold text-emerald-900">Local UI feedback example</p>
-        <p className="mt-0.5 text-sm text-emerald-800">Nothing was saved or sent to a backend.</p>
+        <p className={`font-extrabold ${config.heading}`}>{title}</p>
+        <p className={`mt-0.5 text-sm ${config.text}`}>{description}</p>
       </div>
-      <button type="button" aria-label="Dismiss feedback example" onClick={onClose} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-emerald-800 hover:bg-emerald-100">
+      <button type="button" aria-label="Dismiss feedback" onClick={onClose} className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md ${config.close}`}>
         <X className="h-4 w-4" aria-hidden="true" />
       </button>
     </div>
