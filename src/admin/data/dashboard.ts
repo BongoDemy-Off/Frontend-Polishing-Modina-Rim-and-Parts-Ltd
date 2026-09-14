@@ -1,10 +1,12 @@
 import type { AdminStatus } from '../types';
+import { adminJobApplications } from './applications';
+import { adminCareers } from './careers';
 
 export const dashboardMetrics = [
   { label: 'Products', value: '21', note: '3 highlighted on website', tone: 'red' as const },
   { label: 'Published Posts', value: '9', note: '2 drafts in review', tone: 'blue' as const },
   { label: 'New Messages', value: '7', note: 'Mock inbox count', tone: 'amber' as const },
-  { label: 'Open Jobs', value: '3', note: '12 sample applications', tone: 'green' as const },
+  { label: 'Open Jobs', value: '4', note: '5 synthetic application records', tone: 'green' as const },
 ];
 
 export const recentActivity = [
@@ -43,11 +45,13 @@ export const messageRows: MessageRow[] = [
   { id: 3, sender: 'Rashed Auto Parts', subject: 'Product catalogue request for Jessore regional distribution', received: 'Yesterday', status: 'Reviewed' },
 ];
 
-export const applicationRows = [
-  { id: 1, applicant: 'Farzana Akter', role: 'Quality Assurance Executive', date: '13 Sep 2026', status: 'New' as AdminStatus },
-  { id: 2, applicant: 'Md. Tanvir Hossain', role: 'CNC Machine Operator — experienced industrial manufacturing candidate', date: '12 Sep 2026', status: 'Reviewed' as AdminStatus },
-  { id: 3, applicant: 'Sadia Rahman', role: 'Marketing & Communications Officer', date: '11 Sep 2026', status: 'Reviewed' as AdminStatus },
-];
+export const applicationRows = adminJobApplications.slice(0, 3).map((application) => ({
+  id: application.id,
+  applicant: application.applicantName,
+  role: adminCareers.find((career) => career.id === application.vacancyId)?.title.en || 'Missing vacancy reference',
+  date: application.submittedAt,
+  status: application.reviewStatus as AdminStatus,
+}));
 
 export const certificateRows = [
   { id: 1, name: 'ISO 9001:2015 — Quality Management System', expiry: '18 Dec 2026', remaining: '96 days', status: 'Expiring Soon' as AdminStatus },

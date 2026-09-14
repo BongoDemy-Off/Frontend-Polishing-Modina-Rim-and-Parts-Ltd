@@ -105,12 +105,12 @@ export default function Dashboard() {
             </div>
           </SectionCard>
 
-          <SectionCard title="Recent Job Applications" description="Sample candidate review status">
+          <SectionCard title="Recent Job Applications" description="Synthetic candidate review status — no real submissions" action={<Link to="/admin/job-applications" className={adminButtonClass('ghost', 'px-3')}>View all <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>}>
             <div className="divide-y divide-[var(--admin-border)]">
               {applicationRows.map((item) => (
-                <article key={item.id} className="p-4">
+                <Link key={item.id} to={`/admin/job-applications/${item.id}`} className="block p-4 no-underline hover:bg-slate-50" aria-label={`View synthetic application from ${item.applicant}`}>
                   <div className="flex items-start justify-between gap-3"><div className="min-w-0"><p className="font-extrabold text-[var(--admin-heading)]">{item.applicant}</p><p className="mt-1 break-words text-sm text-[var(--admin-text)]">{item.role}</p><p className="mt-1 text-xs text-[var(--admin-muted)]">{item.date}</p></div><StatusBadge status={item.status} /></div>
-                </article>
+                </Link>
               ))}
             </div>
           </SectionCard>

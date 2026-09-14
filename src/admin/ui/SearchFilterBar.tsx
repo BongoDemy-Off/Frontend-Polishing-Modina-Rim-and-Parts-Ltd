@@ -6,7 +6,7 @@ export interface SearchFilterDefinition {
   label: string;
   value: string;
   onChange: (value: string) => void;
-  options: string[];
+  options: Array<string | { label: string; value: string }>;
 }
 
 interface SearchFilterBarProps {
@@ -44,7 +44,7 @@ export function SearchFilterBar({ query, onQueryChange, filter = 'All', onFilter
           <span className="relative block">
             <SlidersHorizontal className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--admin-muted)]" aria-hidden="true" />
             <select className="admin-control pl-10 pr-3" value={item.value} onChange={(event) => item.onChange(event.target.value)}>
-              {item.options.map((option) => <option key={option}>{option}</option>)}
+              {item.options.map((option) => typeof option === 'string' ? <option key={option}>{option}</option> : <option key={option.value} value={option.value}>{option.label}</option>)}
             </select>
           </span>
         </label>

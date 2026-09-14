@@ -16,6 +16,10 @@ import DownloadEditor from './pages/downloads/DownloadEditor';
 import DownloadsList from './pages/downloads/DownloadsList';
 import FaqEditor from './pages/faq/FaqEditor';
 import FaqList from './pages/faq/FaqList';
+import CareersList from './pages/careers/CareersList';
+import CareerEditor from './pages/careers/CareerEditor';
+import ApplicationsList from './pages/applications/ApplicationsList';
+import ApplicationDetail from './pages/applications/ApplicationDetail';
 import { adminRouteMeta } from './data/navigation';
 
 export default function AdminRoutes() {
@@ -43,8 +47,13 @@ export default function AdminRoutes() {
         <Route path="faq" element={<FaqList />} />
         <Route path="faq/new" element={<FaqEditor mode="create" />} />
         <Route path="faq/:id" element={<FaqEditor mode="edit" />} />
+        <Route path="careers" element={<CareersList />} />
+        <Route path="careers/new" element={<CareerEditor mode="create" />} />
+        <Route path="careers/:id" element={<CareerEditor mode="edit" />} />
+        <Route path="job-applications" element={<ApplicationsList />} />
+        <Route path="job-applications/:id" element={<ApplicationDetail />} />
         {adminRouteMeta
-          .filter((meta) => !['/admin/dashboard', '/admin/products', '/admin/blog', '/admin/news', '/admin/gallery', '/admin/downloads', '/admin/faq'].includes(meta.path))
+          .filter((meta) => !['/admin/dashboard', '/admin/products', '/admin/blog', '/admin/news', '/admin/gallery', '/admin/downloads', '/admin/faq', '/admin/careers', '/admin/job-applications'].includes(meta.path))
           .map((meta) => (
             <Route key={meta.path} path={meta.path.replace('/admin/', '')} element={<ModulePlaceholder meta={meta} />} />
           ))}

@@ -25,5 +25,8 @@ export type AdminStatus =
   | 'Closed'
   | 'New'
   | 'Reviewed'
+  | 'Shortlisted'
+  | 'Rejected'
+  | 'Hired'
   | 'Expiring Soon'
   | 'Valid';
