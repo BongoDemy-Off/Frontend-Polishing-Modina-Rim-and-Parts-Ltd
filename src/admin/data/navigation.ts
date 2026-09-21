@@ -74,6 +74,7 @@ export const adminNavigation: Array<{ section: AdminSection; items: AdminRouteMe
     items: [
       { path: '/admin/navigation', title: 'Navigation', section: 'Website', description: 'Public website navigation structure', icon: ListTree },
       { path: '/admin/footer', title: 'Footer', section: 'Website', description: 'Footer links and company information', icon: PanelsTopLeft },
+      { path: '/admin/contact', title: 'Contact Page', section: 'Website', description: 'Public Contact page content and form copy', icon: ContactRound },
       { path: '/admin/seo', title: 'SEO', section: 'Website', description: 'Search metadata and indexing controls', icon: SearchCheck },
       { path: '/admin/media', title: 'Media Library', section: 'Website', description: 'Shared website images and documents', icon: Image },
       { path: '/admin/languages', title: 'Languages', section: 'Website', description: 'English and Bengali content coverage', icon: Languages },

@@ -40,9 +40,9 @@ export interface MessageRow {
 }
 
 export const messageRows: MessageRow[] = [
-  { id: 1, sender: 'Mahmudul Hasan, Eastern Mobility Components', subject: 'Request for technical specifications and dealership discussion for multiple rim categories', received: '24 min ago', status: 'New' },
-  { id: 2, sender: 'Nusrat Jahan', subject: 'ISO certificate verification and factory visit availability', received: '3 hours ago', status: 'New' },
-  { id: 3, sender: 'Rashed Auto Parts', subject: 'Product catalogue request for Jessore regional distribution', received: 'Yesterday', status: 'Reviewed' },
+  { id: 1, sender: 'Demo Contact 01, Demo Company 01', subject: 'General Inquiry — synthetic demonstration record', received: '24 min ago', status: 'New' },
+  { id: 2, sender: 'Demo Contact 02, Demo Company 02', subject: 'Product Inquiry — synthetic demonstration record', received: '3 hours ago', status: 'New' },
+  { id: 3, sender: 'Demo Contact 03', subject: 'Partnership — synthetic demonstration record', received: 'Yesterday', status: 'Reviewed' },
 ];
 
 export const applicationRows = adminJobApplications.slice(0, 3).map((application) => ({

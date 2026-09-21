@@ -14,6 +14,10 @@ const config: Record<AdminStatus, { className: string; icon: typeof CircleDot }>
   Shortlisted: { className: 'border-amber-200 bg-amber-50 text-amber-800', icon: BookmarkCheck },
   Rejected: { className: 'border-rose-200 bg-rose-50 text-rose-700', icon: UserX },
   Hired: { className: 'border-emerald-200 bg-emerald-50 text-emerald-700', icon: UserCheck },
+  Active: { className: 'border-emerald-200 bg-emerald-50 text-emerald-700', icon: UserCheck },
+  Disabled: { className: 'border-slate-200 bg-slate-100 text-slate-600', icon: Lock },
+  Completed: { className: 'border-emerald-200 bg-emerald-50 text-emerald-700', icon: CheckCircle2 },
+  'Not completed': { className: 'border-amber-200 bg-amber-50 text-amber-800', icon: CircleAlert },
   'Expiring Soon': { className: 'border-amber-200 bg-amber-50 text-amber-800', icon: CircleAlert },
   Valid: { className: 'border-emerald-200 bg-emerald-50 text-emerald-700', icon: CheckCircle2 },
 };
