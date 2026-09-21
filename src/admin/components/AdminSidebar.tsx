@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ShieldAlert, X } from 'lucide-react';
 import logoImage from '../../assets/logo.png';
 import { cn } from '../../lib/utils';
@@ -16,6 +16,10 @@ const focusableSelector = 'button:not([disabled]), a[href], [tabindex]:not([tabi
 
 function SidebarContent({ collapsed, mobile, onClose, onCollapsedChange }: { collapsed: boolean; mobile: boolean; onClose: () => void; onCollapsedChange: (value: boolean) => void }) {
   const location = useLocation();
+  const isRouteActive = (itemPath: string) => {
+    if (itemPath === '/admin/dashboard') return location.pathname === '/admin' || location.pathname === '/admin/' || location.pathname === itemPath;
+    return location.pathname === itemPath || location.pathname.startsWith(`${itemPath}/`);
+  };
   return (
     <div className="flex h-full min-h-0 flex-col bg-white">
       <div className={cn('flex h-[72px] shrink-0 items-center border-b border-[var(--admin-border)] px-4', collapsed && !mobile ? 'justify-center' : 'justify-between gap-3')}>
@@ -24,7 +28,7 @@ function SidebarContent({ collapsed, mobile, onClose, onCollapsedChange }: { col
           {(!collapsed || mobile) && (
             <span className="min-w-0">
               <span className="block truncate text-sm font-extrabold tracking-[-0.02em] text-[var(--admin-heading)]">Modina Admin</span>
-              <span className="block truncate text-[10px] font-bold uppercase tracking-[0.12em] text-[var(--admin-muted)]">UI Foundation</span>
+              <span className="block truncate text-[10px] font-bold uppercase tracking-[0.12em] text-[var(--admin-muted)]">Frontend Demo</span>
             </span>
           )}
         </Link>
@@ -46,10 +50,10 @@ function SidebarContent({ collapsed, mobile, onClose, onCollapsedChange }: { col
             <ul className="space-y-1">
               {group.items.map((item) => {
                 const Icon = item.icon;
-                const active = location.pathname === item.path || (item.path === '/admin/dashboard' && location.pathname === '/admin');
+                const active = isRouteActive(item.path);
                 return (
                   <li key={item.path}>
-                    <NavLink
+                    <Link
                       to={item.path}
                       onClick={onClose}
                       aria-label={collapsed && !mobile ? item.title : undefined}
@@ -65,7 +69,7 @@ function SidebarContent({ collapsed, mobile, onClose, onCollapsedChange }: { col
                       <Icon className="h-5 w-5 shrink-0" aria-hidden="true" />
                       {(!collapsed || mobile) && <span className="min-w-0 break-words">{item.title}</span>}
                       {collapsed && !mobile && <span role="tooltip" className="admin-tooltip">{item.title}</span>}
-                    </NavLink>
+                    </Link>
                   </li>
                 );
               })}
@@ -80,8 +84,8 @@ function SidebarContent({ collapsed, mobile, onClose, onCollapsedChange }: { col
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-200 text-slate-700"><ShieldAlert className="h-4 w-4" aria-hidden="true" /></span>
             {(!collapsed || mobile) && (
               <span className="min-w-0">
-                <span className="block truncate text-xs font-extrabold text-[var(--admin-heading)]">Demo administrator</span>
-                <span className="block truncate text-[10px] font-semibold text-[var(--admin-muted)]">No authentication connected</span>
+                <span className="block truncate text-xs font-extrabold text-[var(--admin-heading)]">Frontend demo</span>
+                <span className="block truncate text-[10px] font-semibold text-[var(--admin-muted)]">Authentication is not connected.</span>
               </span>
             )}
           </div>

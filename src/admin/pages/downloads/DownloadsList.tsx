@@ -36,7 +36,7 @@ export default function DownloadsList() {
     { key: 'actions', label: 'Actions', width: '9%', render: actions },
   ];
   return <div className="space-y-6 xl:space-y-8">
-    <PageHeader eyebrow="Downloads Admin · local prototype" title="Downloads" description="Manage global ordering and metadata-only mock copies. No file is attached to any seeded public record." actions={<Link to="/admin/downloads/new" className={adminButtonClass('primary')}><Plus className="h-4 w-4" aria-hidden="true" /> New Download</Link>} />
+    <PageHeader eyebrow="Downloads Admin · local prototype" title="Downloads" description="Manage global ordering and metadata-only demo copies. No file is attached to any seeded public record." actions={<Link to="/admin/downloads/new" className={adminButtonClass('primary')}><Plus className="h-4 w-4" aria-hidden="true" /> New Download</Link>} />
     <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950"><strong>Migration incomplete.</strong> Current frontend metadata exists, but no seeded Download has a source file or URL. Existing Published labels are retained for historical frontend fidelity.</div>
     {toast && <DemoToast title="Download action simulated" description={toast} tone="warning" onClose={() => setToast(null)} />}
     <SectionCard title="Download Collection" description={`${rows.length} of ${items.length} records shown`}>

@@ -39,7 +39,7 @@ export default function ProductEditor({ mode }: { mode: 'create' | 'edit' }) {
   const [archiveOpen, setArchiveOpen] = useState(false);
   const [discardOpen, setDiscardOpen] = useState(false);
 
-  if (!product) return <EmptyState title="Product not found" description="This mock product ID does not exist in the Admin catalog." action={<AdminButton variant="secondary" onClick={() => navigate('/admin/products')}><ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to Products</AdminButton>} />;
+  if (!product) return <EmptyState headingLevel={1} title="Product Not Found" description="This demo product ID does not exist in the Admin catalog." action={<AdminButton variant="secondary" onClick={() => navigate('/admin/products')}><ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to Products</AdminButton>} />;
 
   const normalizedSku = product.sku.trim().toLowerCase();
   const duplicateSku = Boolean(normalizedSku && adminProducts.some((item) => item.id !== product.id && item.sku.toLowerCase() === normalizedSku));
@@ -55,7 +55,7 @@ export default function ProductEditor({ mode }: { mode: 'create' | 'edit' }) {
 
   const publishErrors = (): ProductValidationErrors => ({
     ...(!product.content.name.en.trim() ? { name: 'English product name is required before publishing.' } : {}),
-    ...(!product.sku.trim() ? { sku: 'SKU is required before publishing.' } : duplicateSku ? { sku: 'This SKU already exists in the Admin mock catalog. Choose a unique SKU.' } : {}),
+    ...(!product.sku.trim() ? { sku: 'SKU is required before publishing.' } : duplicateSku ? { sku: 'This SKU already exists in the Admin demo catalog. Choose a unique SKU.' } : {}),
     ...(!product.category ? { category: 'Category is required before publishing.' } : {}),
   });
 
@@ -93,7 +93,7 @@ export default function ProductEditor({ mode }: { mode: 'create' | 'edit' }) {
         eyebrow={mode === 'create' ? 'Products · Create mode' : `Products · ${product.sku}`}
         title={mode === 'create' ? `Create ${displayName}` : displayName}
         description="Frontend-only product editor. Every change exists only in this browser session and never reaches the public catalog."
-        actions={<><AdminButton variant="secondary" onClick={back}><ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to Products</AdminButton><AdminButton variant="ghost" onClick={() => setPreviewOpen(true)}><Eye className="h-4 w-4" aria-hidden="true" /> Preview</AdminButton><AdminButton variant="secondary" onClick={saveDraft}><Save className="h-4 w-4" aria-hidden="true" /> Save Draft</AdminButton><AdminButton variant="primary" onClick={publish}><Send className="h-4 w-4" aria-hidden="true" /> Publish</AdminButton></>}
+        actions={<><AdminButton variant="secondary" onClick={back}><ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to Products</AdminButton><AdminButton variant="ghost" onClick={() => setPreviewOpen(true)}><Eye className="h-4 w-4" aria-hidden="true" /> Admin Preview</AdminButton><AdminButton variant="secondary" onClick={saveDraft}><Save className="h-4 w-4" aria-hidden="true" /> Save Draft</AdminButton><AdminButton variant="primary" onClick={publish}><Send className="h-4 w-4" aria-hidden="true" /> Publish Demo</AdminButton></>}
       />
 
       <div className="flex flex-wrap items-center gap-3 rounded-xl border border-[var(--admin-border)] bg-white px-4 py-3">
@@ -114,14 +114,14 @@ export default function ProductEditor({ mode }: { mode: 'create' | 'edit' }) {
       <div className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_320px] xl:items-start">
         <div className="min-w-0 space-y-6">
           <div id="basic-information" className="scroll-mt-36">
-            <SectionCard title="1. Basic Information" description="Shared identifiers and classification; SKU remains editable Admin mock data.">
+            <SectionCard title="1. Basic Information" description="Shared identifiers and classification; SKU remains editable Admin demo data.">
               <div className="grid gap-4 p-4 sm:grid-cols-2 sm:p-5">
-                <AdminInput label="SKU" required value={product.sku} onChange={(event) => changeProduct({ ...product, sku: event.target.value })} error={errors.sku || (duplicateSku ? 'Duplicate SKU in the local Admin mock catalog. This is client-side guidance only.' : undefined)} helpText="Seeded products use SKU-001 through SKU-021. New product SKUs are not generated from a fake ID." />
+                <AdminInput label="SKU" required value={product.sku} onChange={(event) => changeProduct({ ...product, sku: event.target.value })} error={errors.sku || (duplicateSku ? 'Duplicate SKU in the local Admin demo catalog. This is client-side guidance only.' : undefined)} helpText="Seeded products use SKU-001 through SKU-021. New product SKUs are not generated from a fake ID." />
                 <AdminSelect label="Category" required value={product.category} onChange={(event) => changeProduct({ ...product, category: event.target.value as AdminProduct['category'] })} error={errors.category}>
                   <option value="">Select a category</option>
                   {productCategories.map((item) => <option key={item}>{item}</option>)}
                 </AdminSelect>
-                <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 sm:col-span-2"><p className="text-xs font-extrabold uppercase tracking-[0.08em] text-[var(--admin-muted)]">Current source boundary</p><p className="mt-1 text-sm leading-6 text-[var(--admin-text)]">Material, certification and availability are represented as editable specification rows. MOQ, lead time and generic public drawer bullets are not treated as authoritative product data.</p></div>
+                <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 sm:col-span-2"><p className="text-xs font-extrabold uppercase tracking-[0.08em] text-[var(--admin-muted)]">Current source context</p><p className="mt-1 text-sm leading-6 text-[var(--admin-text)]">Material, certification and availability are represented as editable specification rows. MOQ, lead time and generic public drawer bullets are not treated as authoritative product data.</p></div>
               </div>
             </SectionCard>
           </div>

@@ -1,19 +1,29 @@
 import type { AdminStatus } from '../types';
+import type { ContactMessageStatus } from '../types/contact-messages';
 import { adminJobApplications } from './applications';
+import { adminBlogPosts } from './blog';
 import { adminCareers } from './careers';
+import { certificateRecords } from './certificates';
+import { adminContactMessages } from './contact-messages';
+import { adminNewsItems } from './news';
+import { adminProducts } from './products';
+
+const publishedContentCount = [...adminBlogPosts, ...adminNewsItems].filter((item) => item.status === 'Published').length;
+const newMessageCount = adminContactMessages.filter((message) => message.status === 'New').length;
+const openJobCount = adminCareers.filter((career) => career.status === 'Open').length;
 
 export const dashboardMetrics = [
-  { label: 'Products', value: '21', note: '3 highlighted on website', tone: 'red' as const },
-  { label: 'Published Posts', value: '9', note: '2 drafts in review', tone: 'blue' as const },
-  { label: 'New Messages', value: '7', note: 'Mock inbox count', tone: 'amber' as const },
-  { label: 'Open Jobs', value: '4', note: '5 synthetic application records', tone: 'green' as const },
+  { label: 'Products', value: String(adminProducts.length), note: 'Static demo product records', tone: 'red' as const },
+  { label: 'Published Content', value: String(publishedContentCount), note: 'Blog and News demo records', tone: 'blue' as const },
+  { label: 'New Messages', value: String(newMessageCount), note: `${adminContactMessages.length} synthetic contact records`, tone: 'amber' as const },
+  { label: 'Open Jobs', value: String(openJobCount), note: `${adminJobApplications.length} synthetic applications`, tone: 'green' as const },
 ];
 
 export const recentActivity = [
-  { id: 1, action: 'Product updated', detail: 'Motor Cycle Center Stand — engineering image and dimensions reviewed', actor: 'Demo editor', time: '18 minutes ago' },
-  { id: 2, action: 'Blog post published', detail: 'The Science Behind ISO 9001 and What It Means for Buyers', actor: 'Demo editor', time: '2 hours ago' },
-  { id: 3, action: 'Hero slide changed', detail: 'Precision manufacturing for Bangladesh and beyond', actor: 'Demo administrator', time: 'Yesterday' },
-  { id: 4, action: 'Gallery image added', detail: 'Final quality inspection — powder-coated CNG rim production line', actor: 'Demo editor', time: '2 days ago' },
+  { id: 1, action: 'Product updated', detail: 'Motor Cycle Center Stand — engineering image and dimensions reviewed', actor: 'Demo editor', time: 'Illustrative' },
+  { id: 2, action: 'Blog post published', detail: 'The Science Behind ISO 9001 and What It Means for Buyers', actor: 'Demo editor', time: 'Illustrative' },
+  { id: 3, action: 'Hero slide changed', detail: 'Precision manufacturing for Bangladesh and beyond', actor: 'Demo editor', time: 'Illustrative' },
+  { id: 4, action: 'Gallery image added', detail: 'Final quality inspection — powder-coated CNG rim production line', actor: 'Demo editor', time: 'Illustrative' },
 ];
 
 export interface DraftRow {
@@ -26,24 +36,26 @@ export interface DraftRow {
 }
 
 export const draftRows: DraftRow[] = [
-  { id: 1, title: 'Expanded quality-control checklist for precision rim inspection and traceability', type: 'Blog', editor: 'Demo editor', updated: 'Today, 10:24', status: 'Draft' },
-  { id: 2, title: 'মোটরসাইকেল সেন্টার স্ট্যান্ড — স্থায়িত্ব ও ভারসাম্যের বিস্তারিত বিবরণ', type: 'Product বাংলা', editor: 'Demo translator', updated: 'Yesterday', status: 'Draft' },
-  { id: 3, title: 'National Manufacturing Excellence Expo — participation announcement', type: 'News & Event', editor: 'Demo editor', updated: '12 Sep 2026', status: 'Scheduled' },
+  { id: 1, title: 'Expanded quality-control checklist for precision rim inspection and traceability', type: 'Blog', editor: 'Demo editor', updated: 'Demo snapshot', status: 'Draft' },
+  { id: 2, title: 'মোটরসাইকেল সেন্টার স্ট্যান্ড — স্থায়িত্ব ও ভারসাম্যের বিস্তারিত বিবরণ', type: 'Product বাংলা', editor: 'Demo translator', updated: 'Demo snapshot', status: 'Draft' },
+  { id: 3, title: 'National Manufacturing Excellence Expo — participation announcement', type: 'News & Event', editor: 'Demo editor', updated: 'Demo snapshot', status: 'Draft' },
 ];
 
 export interface MessageRow {
-  id: number;
+  id: string;
   sender: string;
   subject: string;
   received: string;
-  status: AdminStatus;
+  status: ContactMessageStatus;
 }
 
-export const messageRows: MessageRow[] = [
-  { id: 1, sender: 'Demo Contact 01, Demo Company 01', subject: 'General Inquiry — synthetic demonstration record', received: '24 min ago', status: 'New' },
-  { id: 2, sender: 'Demo Contact 02, Demo Company 02', subject: 'Product Inquiry — synthetic demonstration record', received: '3 hours ago', status: 'New' },
-  { id: 3, sender: 'Demo Contact 03', subject: 'Partnership — synthetic demonstration record', received: 'Yesterday', status: 'Reviewed' },
-];
+export const messageRows: MessageRow[] = adminContactMessages.slice(0, 3).map((message) => ({
+  id: message.id,
+  sender: message.company ? `${message.name}, ${message.company}` : message.name,
+  subject: `${message.subject} — synthetic demonstration record`,
+  received: message.submittedAt,
+  status: message.status,
+}));
 
 export const applicationRows = adminJobApplications.slice(0, 3).map((application) => ({
   id: application.id,
@@ -53,7 +65,7 @@ export const applicationRows = adminJobApplications.slice(0, 3).map((application
   status: application.reviewStatus as AdminStatus,
 }));
 
-export const certificateRows = [
-  { id: 1, name: 'ISO 9001:2015 — Quality Management System', expiry: '18 Dec 2026', remaining: '96 days', status: 'Expiring Soon' as AdminStatus },
-  { id: 2, name: 'ISO 14001:2015 — Environmental Management System', expiry: '24 May 2027', remaining: '253 days', status: 'Valid' as AdminStatus },
-];
+export const certificateSummary = {
+  recordCount: certificateRecords.length,
+  publishedCount: certificateRecords.filter((record) => record.status === 'Published').length,
+};

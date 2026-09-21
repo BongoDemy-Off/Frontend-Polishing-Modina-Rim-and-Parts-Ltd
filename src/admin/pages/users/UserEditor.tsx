@@ -27,7 +27,7 @@ export default function UserEditor({ mode }: { mode: 'create' | 'edit' }) {
   const [discard, setDiscard] = useState(false);
   const [submitAttempted, setSubmitAttempted] = useState(false);
 
-  if (!user) return <EmptyState title="Demo User not found" description="This synthetic Admin-user ID does not exist." action={<AdminButton variant="secondary" onClick={() => navigate('/admin/users')}><ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to Admin Users</AdminButton>} />;
+  if (!user) return <EmptyState headingLevel={1} title="User Not Found" description="This synthetic Admin-user ID does not exist." action={<AdminButton variant="secondary" onClick={() => navigate('/admin/users')}><ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to Admin Users</AdminButton>} />;
 
   const duplicateEmail = Boolean(user.email.trim()) && demoAdminUsers.some((candidate) => candidate.id !== user.id && normalize(candidate.email) === normalize(user.email));
   const selectedRole = demoRoles.find((role) => role.id === user.assignedRoleId) ?? null;

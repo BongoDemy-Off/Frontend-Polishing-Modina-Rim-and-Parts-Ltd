@@ -75,7 +75,7 @@ export const adminProducts: AdminProduct[] = publicProductSnapshot.map((product)
   status: product.id === 20 ? 'Draft' : product.id === 21 ? 'Archived' : 'Published',
   featured: false,
   updatedAt: product.id <= 3 ? '13 Sep 2026' : '12 Sep 2026',
-  editor: 'Demo administrator',
+  editor: 'Demo editor',
 }));
 
 export function createEmptyProduct(): AdminProduct {
@@ -90,7 +90,7 @@ export function createEmptyProduct(): AdminProduct {
     status: 'Draft',
     featured: false,
     updatedAt: 'Not saved',
-    editor: 'Demo administrator',
+    editor: 'Demo editor',
   };
 }
 

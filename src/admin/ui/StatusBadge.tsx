@@ -10,6 +10,8 @@ const config: Record<AdminStatus, { className: string; icon: typeof CircleDot }>
   Open: { className: 'border-emerald-200 bg-emerald-50 text-emerald-700', icon: CircleDot },
   Closed: { className: 'border-slate-200 bg-slate-100 text-slate-600', icon: Lock },
   New: { className: 'border-sky-200 bg-sky-50 text-sky-700', icon: CircleDot },
+  Read: { className: 'border-violet-200 bg-violet-50 text-violet-700', icon: Eye },
+  Resolved: { className: 'border-emerald-200 bg-emerald-50 text-emerald-700', icon: CheckCircle2 },
   Reviewed: { className: 'border-violet-200 bg-violet-50 text-violet-700', icon: Eye },
   Shortlisted: { className: 'border-amber-200 bg-amber-50 text-amber-800', icon: BookmarkCheck },
   Rejected: { className: 'border-rose-200 bg-rose-50 text-rose-700', icon: UserX },

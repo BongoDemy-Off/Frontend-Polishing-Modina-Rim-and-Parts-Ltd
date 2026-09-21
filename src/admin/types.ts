@@ -24,6 +24,8 @@ export type AdminStatus =
   | 'Open'
   | 'Closed'
   | 'New'
+  | 'Read'
+  | 'Resolved'
   | 'Reviewed'
   | 'Shortlisted'
   | 'Rejected'

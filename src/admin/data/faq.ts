@@ -27,11 +27,11 @@ const categoryCounts = new Map<FaqCategory, number>();
 export const adminFaqs: AdminFaq[] = seeds.map((seed) => {
   const next = (categoryCounts.get(seed.category) ?? 0) + 1;
   categoryCounts.set(seed.category, next);
-  return { id: seed.id, category: seed.category, question: { en: seed.question, bn: '' }, answer: { en: seed.answer, bn: '' }, categoryOrder: next, status: 'Published', updatedAt: 'Current frontend mock snapshot', editor: 'Demo administrator' };
+  return { id: seed.id, category: seed.category, question: { en: seed.question, bn: '' }, answer: { en: seed.answer, bn: '' }, categoryOrder: next, status: 'Published', updatedAt: 'Current frontend demo snapshot', editor: 'Demo editor' };
 });
 
 export function createEmptyFaq(): AdminFaq {
-  return { id: 'new', category: '', question: { en: '', bn: '' }, answer: { en: '', bn: '' }, categoryOrder: 1, status: 'Draft', updatedAt: 'Not saved', editor: 'Demo administrator' };
+  return { id: 'new', category: '', question: { en: '', bn: '' }, answer: { en: '', bn: '' }, categoryOrder: 1, status: 'Draft', updatedAt: 'Not saved', editor: 'Demo editor' };
 }
 
 export const cloneFaq = (item: AdminFaq): AdminFaq => structuredClone(item);

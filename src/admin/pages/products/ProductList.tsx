@@ -56,7 +56,7 @@ export default function ProductList() {
 
   return (
     <div className="space-y-6 xl:space-y-8">
-      <PageHeader eyebrow="Products Admin · local prototype" title="All Products" description="Manage the current 21-product catalog with local typed mock data. Nothing here changes the public website." actions={<Link to="/admin/products/new" className={adminButtonClass('primary')}><Plus className="h-4 w-4" aria-hidden="true" /> Add Product</Link>} />
+      <PageHeader eyebrow="Products Admin · local prototype" title="All Products" description="Manage the current 21-product catalog with local typed demo data. Nothing here changes the public website." actions={<Link to="/admin/products/new" className={adminButtonClass('primary')}><Plus className="h-4 w-4" aria-hidden="true" /> Add Product</Link>} />
       <div className="rounded-xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-950"><strong>Demo data only.</strong> Filters and selections are temporary. Edit, duplicate, archive and publishing actions do not persist.</div>
       {toast && <DemoToast {...toast} onClose={() => setToast(null)} />}
       <SectionCard title="Product Catalog" description={`${rows.length} of ${adminProducts.length} products shown`} action={selected.length ? <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700">{selected.length} selected</span> : undefined}>
@@ -87,7 +87,7 @@ export default function ProductList() {
           }}
         />
       </SectionCard>
-      <AdminDialog open={Boolean(archiveTarget)} title="Archive Product" description={archiveTarget ? `Archive “${archiveTarget.content.name.en}”? This demonstration will not alter the catalog.` : ''} onClose={() => setArchiveTarget(null)} onConfirm={() => setToast({ title: 'Archive action demonstrated', description: 'Demo only — the product remains unchanged and no data was persisted.', tone: 'warning' })} confirmLabel="Confirm Archive Demo" />
+      <AdminDialog open={Boolean(archiveTarget)} title="Archive Product" description={archiveTarget ? `Archive “${archiveTarget.content.name.en}”? This demonstration will not alter the catalog.` : ''} onClose={() => setArchiveTarget(null)} onConfirm={() => setToast({ title: 'Archive action demonstrated', description: 'Demo only — the product remains unchanged and no data was persisted.', tone: 'warning' })} confirmLabel="Archive in Demo" />
     </div>
   );
 }

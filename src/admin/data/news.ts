@@ -37,16 +37,16 @@ export const adminNewsItems: AdminNewsItem[] = seeds.map((seed) => ({
   id: seed.id, slug: normalizeSlug(seed.title), title: { en: seed.title, bn: '' }, excerpt: { en: seed.excerpt, bn: '' },
   blocks: paragraphs(seed.id, seed.body), cover: placeholder(`news-${String(seed.id).padStart(2, '0')}`), coverAlt: { en: seed.title, bn: '' },
   publicationMonth: seed.date, sourceReadTime: seed.readTime, seo: { title: emptyLocalizedText(), description: emptyLocalizedText() },
-  status: 'Published', updatedAt: 'Mock snapshot · 13 Sep 2026', editor: 'Demo administrator', contentType: seed.contentType,
+  status: 'Published', updatedAt: 'Demo snapshot · 13 Sep 2026', editor: 'Demo editor', contentType: seed.contentType,
   factualClaimReminder: true, sourceReviewWarning: seed.sourceReviewWarning,
 }));
 
-export const newsFeaturedSourceWarning = 'The current public News featured card presents a different story from the detail record it links to. Task 4C does not create a News Featured control or alter that public content.';
+export const newsFeaturedSourceWarning = 'The current public News featured card presents a different story from the detail record it links to. This frontend demo does not create a News Featured control or alter that public content.';
 
 export function createEmptyNewsItem(): AdminNewsItem {
   return {
     id: 'new', slug: '', title: emptyLocalizedText(), excerpt: emptyLocalizedText(), blocks: [], cover: null, coverAlt: emptyLocalizedText(),
-    publicationMonth: '', seo: { title: emptyLocalizedText(), description: emptyLocalizedText() }, status: 'Draft', updatedAt: 'Not saved', editor: 'Demo administrator',
+    publicationMonth: '', seo: { title: emptyLocalizedText(), description: emptyLocalizedText() }, status: 'Draft', updatedAt: 'Not saved', editor: 'Demo editor',
     contentType: '', factualClaimReminder: true,
   };
 }

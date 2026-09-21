@@ -4,6 +4,7 @@ import AdminLayout from './layouts/AdminLayout';
 import Dashboard from './pages/Dashboard';
 import FoundationPreview from './pages/FoundationPreview';
 import ModulePlaceholder from './pages/ModulePlaceholder';
+import AdminNotFound from './pages/AdminNotFound';
 import ProductEditor from './pages/products/ProductEditor';
 import ProductList from './pages/products/ProductList';
 import BlogEditor from './pages/blog/BlogEditor';
@@ -107,7 +108,7 @@ export default function AdminRoutes() {
           .map((meta) => (
             <Route key={meta.path} path={meta.path.replace('/admin/', '')} element={<ModulePlaceholder meta={meta} />} />
           ))}
-        <Route path="*" element={<ModulePlaceholder meta={{ ...adminRouteMeta[0], title: 'Admin Page Not Found', description: 'The requested Admin route is not part of the current UI foundation.' }} />} />
+        <Route path="*" element={<AdminNotFound />} />
       </Route>
     </Routes>
   );

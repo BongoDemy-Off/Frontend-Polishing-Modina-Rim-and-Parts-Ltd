@@ -32,12 +32,12 @@ export const adminGalleryItems: AdminGalleryItem[] = seeds.map((seed, index) => 
   sortOrder: index + 1,
   status: 'Published',
   sourceRecordExists: true,
-  updatedAt: 'Current frontend mock snapshot',
-  editor: 'Demo administrator',
+  updatedAt: 'Current frontend demo snapshot',
+  editor: 'Demo editor',
 }));
 
 export function createEmptyGalleryItem(): AdminGalleryItem {
-  return { id: 'new', title: { en: '', bn: '' }, alt: { en: '', bn: '' }, altSource: 'derived-from-title', category: '', media: null, displayStyle: 'Normal', sortOrder: adminGalleryItems.length + 1, status: 'Draft', sourceRecordExists: false, updatedAt: 'Not saved', editor: 'Demo administrator' };
+  return { id: 'new', title: { en: '', bn: '' }, alt: { en: '', bn: '' }, altSource: 'derived-from-title', category: '', media: null, displayStyle: 'Normal', sortOrder: adminGalleryItems.length + 1, status: 'Draft', sourceRecordExists: false, updatedAt: 'Not saved', editor: 'Demo editor' };
 }
 
 export const cloneGalleryItem = (item: AdminGalleryItem): AdminGalleryItem => structuredClone(item);

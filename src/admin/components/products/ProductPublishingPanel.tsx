@@ -27,8 +27,8 @@ export function ProductPublishingPanel({ product, onProductChange, onSaveDraft, 
       </div>
       <div className="grid gap-2 border-t border-[var(--admin-border)] pt-4">
         <AdminButton variant="secondary" onClick={onSaveDraft}><Save className="h-4 w-4" aria-hidden="true" /> Save Draft</AdminButton>
-        <AdminButton variant="ghost" onClick={onPreview}><Eye className="h-4 w-4" aria-hidden="true" /> Preview</AdminButton>
-        <AdminButton variant="primary" onClick={onPublish}><Send className="h-4 w-4" aria-hidden="true" /> Publish</AdminButton>
+        <AdminButton variant="ghost" onClick={onPreview}><Eye className="h-4 w-4" aria-hidden="true" /> Admin Preview</AdminButton>
+        <AdminButton variant="primary" onClick={onPublish}><Send className="h-4 w-4" aria-hidden="true" /> Publish Demo</AdminButton>
         <AdminButton variant="ghost" className="text-red-700" onClick={onArchive}><Archive className="h-4 w-4" aria-hidden="true" /> Archive Product</AdminButton>
       </div>
       <p className="text-xs leading-5 text-[var(--admin-muted)]">All publishing controls are a local UI simulation. No content is persisted or sent to the public website.</p>

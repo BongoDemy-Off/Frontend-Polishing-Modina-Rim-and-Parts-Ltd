@@ -52,8 +52,8 @@ export default function FoundationPreview() {
     <div className="space-y-6 xl:space-y-8">
       <PageHeader
         eyebrow="Local prototype review"
-        title="Admin UI Foundation"
-        description="Reusable patterns prepared for future content modules. Every interaction on this page remains local and temporary."
+        title="UI Foundation — Internal QA"
+        description="Internal interface-pattern review only. Every interaction on this page remains local and temporary."
         actions={<Link to="/admin/dashboard" className={adminButtonClass('secondary')}><ArrowLeft className="h-4 w-4" aria-hidden="true" /> Dashboard</Link>}
       />
 
@@ -63,7 +63,7 @@ export default function FoundationPreview() {
         <div className="flex flex-wrap gap-2 p-4 sm:p-5">
           <AdminButton variant="primary"><Send className="h-4 w-4" aria-hidden="true" /> Primary</AdminButton>
           <AdminButton variant="secondary"><Save className="h-4 w-4" aria-hidden="true" /> Save Draft</AdminButton>
-          <AdminButton variant="ghost"><Eye className="h-4 w-4" aria-hidden="true" /> Preview</AdminButton>
+          <AdminButton variant="ghost"><Eye className="h-4 w-4" aria-hidden="true" /> Admin Preview</AdminButton>
           <AdminButton variant="destructive"><Trash2 className="h-4 w-4" aria-hidden="true" /> Destructive</AdminButton>
           <AdminButton loading>Loading</AdminButton>
           <AdminButton disabled>Disabled</AdminButton>

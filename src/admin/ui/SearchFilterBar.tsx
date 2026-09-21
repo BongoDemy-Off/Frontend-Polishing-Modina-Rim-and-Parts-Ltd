@@ -55,7 +55,7 @@ export function SearchFilterBar({ query, onQueryChange, filter = 'All', onFilter
         onClick={() => { onQueryChange(''); configuredFilters.forEach((item) => item.onChange('All')); }}
         className="sm:mb-0"
       >
-        <X className="h-4 w-4" aria-hidden="true" /> Clear
+        <X className="h-4 w-4" aria-hidden="true" /> Clear Filters
       </AdminButton>
     </div>
   );

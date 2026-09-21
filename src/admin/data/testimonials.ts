@@ -15,7 +15,7 @@ export const adminTestimonials: AdminTestimonial[] = [
     readiness: 'Verification required',
     sourceReviewWarning: 'Source review required: similar names elsewhere on the site use different spelling.',
     updatedAt: 'Current public Homepage source',
-    editor: 'Demo administrator',
+    editor: 'Demo editor',
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ export const adminTestimonials: AdminTestimonial[] = [
     status: 'Published',
     readiness: 'Verification required',
     updatedAt: 'Current public Homepage source',
-    editor: 'Demo administrator',
+    editor: 'Demo editor',
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ export const adminTestimonials: AdminTestimonial[] = [
     status: 'Published',
     readiness: 'Verification required',
     updatedAt: 'Current public Homepage source',
-    editor: 'Demo administrator',
+    editor: 'Demo editor',
   },
 ];
 
@@ -57,7 +57,7 @@ export function createEmptyTestimonial(): AdminTestimonial {
     status: 'Draft',
     readiness: 'Verification required',
     updatedAt: 'Not saved',
-    editor: 'Demo administrator',
+    editor: 'Demo editor',
   };
 }
 

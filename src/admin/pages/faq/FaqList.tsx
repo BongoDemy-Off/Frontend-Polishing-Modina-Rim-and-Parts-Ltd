@@ -32,7 +32,7 @@ export default function FaqList() {
     { key: 'actions', label: 'Actions', width: '13%', render: actions },
   ];
   return <div className="space-y-6 xl:space-y-8">
-    <PageHeader eyebrow="FAQ Admin · local prototype" title="Frequently Asked Questions" description="Manage plain bilingual question-and-answer mock records with category-local ordering." actions={<Link to="/admin/faq/new" className={adminButtonClass('primary')}><Plus className="h-4 w-4" aria-hidden="true" /> New FAQ</Link>} />
+    <PageHeader eyebrow="FAQ Admin · local prototype" title="Frequently Asked Questions" description="Manage plain bilingual question-and-answer demo records with category-local ordering." actions={<Link to="/admin/faq/new" className={adminButtonClass('primary')}><Plus className="h-4 w-4" aria-hidden="true" /> New FAQ</Link>} />
     <div className="rounded-xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-950"><strong>Source boundary:</strong> all 18 current entries are English-only plain text. No votes, popularity, rich text, SEO, or nested groups are inferred.</div>
     {toast && <DemoToast title="FAQ action simulated" description={toast} tone="warning" onClose={() => setToast(null)} />}
     <SectionCard title="FAQ Collection" description={`${rows.length} of ${items.length} questions shown`}>

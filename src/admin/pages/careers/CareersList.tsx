@@ -30,12 +30,12 @@ export default function CareersList() {
     { key: 'location', label: 'Location', width: '13%', headerClassName: 'hidden lg:table-cell', cellClassName: 'hidden lg:table-cell', render: (career) => career.location.en },
     { key: 'deadline', label: 'Deadline', width: '15%', headerClassName: 'hidden xl:table-cell', cellClassName: 'hidden xl:table-cell', render: (career) => career.applicationDeadline || <span className="text-xs text-[var(--admin-muted)]">Not provided in current source</span> },
     { key: 'status', label: 'Status', width: '11%', render: (career) => <StatusBadge status={career.status} /> },
-    { key: 'applications', label: 'Demo Applications', width: '12%', headerClassName: 'hidden min-[1100px]:table-cell', cellClassName: 'hidden min-[1100px]:table-cell', render: (career) => `${countFor(career.id)} mock` },
+    { key: 'applications', label: 'Demo Applications', width: '12%', headerClassName: 'hidden min-[1100px]:table-cell', cellClassName: 'hidden min-[1100px]:table-cell', render: (career) => `${countFor(career.id)} demo` },
     { key: 'updated', label: 'Updated', width: '12%', headerClassName: 'hidden min-[1320px]:table-cell', cellClassName: 'hidden min-[1320px]:table-cell', render: (career) => career.updatedAt },
     { key: 'actions', label: 'Actions', width: '19%', render: actions },
   ];
   return <div className="space-y-6 xl:space-y-8">
-    <PageHeader eyebrow="Careers Admin · local prototype" title="Vacancies" description="Manage source-aligned vacancy content with typed local mock data. Nothing here changes the public Careers page." actions={<Link to="/admin/careers/new" className={adminButtonClass('primary')}><Plus className="h-4 w-4" aria-hidden="true" /> Add Vacancy</Link>} />
+    <PageHeader eyebrow="Careers Admin · local prototype" title="Vacancies" description="Manage source-aligned vacancy content with typed local demo data. Nothing here changes the public Careers page." actions={<Link to="/admin/careers/new" className={adminButtonClass('primary')}><Plus className="h-4 w-4" aria-hidden="true" /> Add Vacancy</Link>} />
     <div className="rounded-xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-950"><strong>Demo vacancy data only.</strong> “Demo Applications” counts come from synthetic Admin seeds, not public submissions. All status and content actions are temporary.</div>
     {toast && <DemoToast {...toast} onClose={() => setToast(null)} />}
     <SectionCard title="Vacancy Collection" description={`${rows.length} of ${careers.length} vacancies shown`} action={selected.length ? <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700">{selected.length} selected</span> : undefined}>
@@ -45,4 +45,3 @@ export default function CareersList() {
     <AdminDialog open={Boolean(pending)} title={pending?.kind === 'close' ? 'Close Vacancy' : 'Archive Vacancy'} description={pending ? `${pending.kind === 'close' ? 'Close' : 'Archive'} “${pending.career.title.en}”? Applications will remain accessible. No applicant status, email, or public content will change.` : ''} confirmLabel={pending?.kind === 'close' ? 'Close in Demo' : 'Archive in Demo'} onClose={() => setPending(null)} onConfirm={() => pending && changeStatus(pending.career, pending.kind === 'close' ? 'Closed' : 'Archived')} />
   </div>;
 }
-

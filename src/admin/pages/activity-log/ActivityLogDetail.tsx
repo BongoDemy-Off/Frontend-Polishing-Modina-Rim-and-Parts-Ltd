@@ -17,7 +17,7 @@ function Detail({ label, children }: { label: string; children: ReactNode }) {
 export default function ActivityLogDetail() {
   const { id } = useParams();
   const entry = demoActivityEntries.find((candidate) => candidate.id === id);
-  if (!entry) return <EmptyState title="Synthetic activity entry not found" description="This demo Activity Log ID does not exist." action={<Link to="/admin/activity-log" className={adminButtonClass('secondary')}><ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to Activity Log</Link>} />;
+  if (!entry) return <EmptyState headingLevel={1} title="Activity Entry Not Found" description="This demo Activity Log ID does not exist." action={<Link to="/admin/activity-log" className={adminButtonClass('secondary')}><ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to Activity Log</Link>} />;
   const actor = demoAdminUsers.find((user) => user.id === entry.actorUserId);
   return (
     <div className="space-y-6 xl:space-y-8">

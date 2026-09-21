@@ -18,7 +18,7 @@ interface ToastMessage { title: string; description: string; tone: 'success' | '
 export default function ApplicationDetail() {
   const { id } = useParams(); const navigate = useNavigate(); const seed = adminJobApplications.find((candidate) => String(candidate.id) === id);
   const [application, setApplication] = useState<AdminJobApplication | null>(() => seed ? cloneApplication(seed) : null); const [pendingStatus, setPendingStatus] = useState<ApplicationReviewStatus | null>(null); const [toast, setToast] = useState<ToastMessage | null>(null);
-  if (!application) return <EmptyState title="Application not found" description="This synthetic application ID does not exist." action={<AdminButton variant="secondary" onClick={() => navigate('/admin/job-applications')}><ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to Applications</AdminButton>} />;
+  if (!application) return <EmptyState headingLevel={1} title="Application Not Found" description="This synthetic application ID does not exist." action={<AdminButton variant="secondary" onClick={() => navigate('/admin/job-applications')}><ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to Applications</AdminButton>} />;
   const vacancy = adminCareers.find((career) => career.id === application.vacancyId); const vacancyTitle = vacancy?.title.en || 'Missing vacancy reference';
   const applyStatus = (status: ApplicationReviewStatus) => { setApplication({ ...application, reviewStatus: status }); setToast({ title: `Review status changed to ${status}`, description: 'Demo only — no applicant record was persisted and no email was sent.', tone: status === 'Rejected' ? 'warning' : 'success' }); };
   const requestStatus = (status: ApplicationReviewStatus) => { if (status === 'Rejected' || status === 'Hired') setPendingStatus(status); else applyStatus(status); };
@@ -31,4 +31,3 @@ export default function ApplicationDetail() {
     <AdminDialog open={Boolean(pendingStatus)} title={`Confirm ${pendingStatus || ''} outcome`} description={`Set this synthetic application to ${pendingStatus || ''}? This represents a consequential future outcome, but it will not send email, close the vacancy, create an employee account, generate an offer, or persist data.`} confirmLabel={`Set ${pendingStatus || ''} in Demo`} confirmVariant={pendingStatus === 'Rejected' ? 'destructive' : 'primary'} onClose={() => setPendingStatus(null)} onConfirm={() => pendingStatus && applyStatus(pendingStatus)}><p className="font-semibold">Demo only — no applicant record was persisted and no email was sent.</p></AdminDialog>
   </div>;
 }
-

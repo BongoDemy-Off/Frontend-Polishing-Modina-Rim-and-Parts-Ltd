@@ -2,11 +2,12 @@ import type { ReactNode } from 'react';
 import { AlertTriangle, CheckCircle2, Inbox, Info, LoaderCircle, X } from 'lucide-react';
 import { AdminButton } from './Button';
 
-export function EmptyState({ title, description, action }: { title: string; description: string; action?: ReactNode }) {
+export function EmptyState({ title, description, action, headingLevel = 3 }: { title: string; description: string; action?: ReactNode; headingLevel?: 1 | 2 | 3 }) {
+  const Heading = `h${headingLevel}` as 'h1' | 'h2' | 'h3';
   return (
     <div className="flex flex-col items-center px-5 py-10 text-center">
       <span className="mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-slate-100 text-slate-600"><Inbox className="h-5 w-5" aria-hidden="true" /></span>
-      <h3 className="font-extrabold text-[var(--admin-heading)]">{title}</h3>
+      <Heading className={headingLevel === 1 ? 'text-2xl font-extrabold text-[var(--admin-heading)]' : 'font-extrabold text-[var(--admin-heading)]'}>{title}</Heading>
       <p className="mt-1 max-w-md text-sm text-[var(--admin-muted)]">{description}</p>
       {action && <div className="mt-4">{action}</div>}
     </div>
@@ -52,7 +53,7 @@ export function DemoToast({ onClose, title = 'Local UI feedback example', descri
         <p className={`font-extrabold ${config.heading}`}>{title}</p>
         <p className={`mt-0.5 text-sm ${config.text}`}>{description}</p>
       </div>
-      <button type="button" aria-label="Dismiss feedback" onClick={onClose} className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md ${config.close}`}>
+      <button type="button" aria-label="Dismiss notification" onClick={onClose} className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-md ${config.close}`}>
         <X className="h-4 w-4" aria-hidden="true" />
       </button>
     </div>

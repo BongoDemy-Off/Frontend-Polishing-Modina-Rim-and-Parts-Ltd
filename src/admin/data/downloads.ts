@@ -27,12 +27,12 @@ export const adminDownloads: AdminDownload[] = seeds.map((seed, index) => ({
   migrationRequired: true,
   sortOrder: index + 1,
   status: 'Published',
-  updatedAt: 'Current frontend mock snapshot',
-  editor: 'Demo administrator',
+  updatedAt: 'Current frontend demo snapshot',
+  editor: 'Demo editor',
 }));
 
 export function createEmptyDownload(): AdminDownload {
-  return { id: 'new', title: { en: '', bn: '' }, description: { en: '', bn: '' }, category: '', sourceMetadata: { sizeLabel: '', format: '', extentLabel: '', sourceYear: '' }, selectedFile: null, sourceRecordExists: false, migrationRequired: false, sortOrder: adminDownloads.length + 1, status: 'Draft', updatedAt: 'Not saved', editor: 'Demo administrator' };
+  return { id: 'new', title: { en: '', bn: '' }, description: { en: '', bn: '' }, category: '', sourceMetadata: { sizeLabel: '', format: '', extentLabel: '', sourceYear: '' }, selectedFile: null, sourceRecordExists: false, migrationRequired: false, sortOrder: adminDownloads.length + 1, status: 'Draft', updatedAt: 'Not saved', editor: 'Demo editor' };
 }
 
 export const cloneDownload = (item: AdminDownload): AdminDownload => structuredClone(item);

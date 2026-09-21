@@ -27,7 +27,7 @@ export function GalleryMediaSection({ item, language, onLanguageChange, onMediaC
     <div className="space-y-5">
       <div className={`flex items-start gap-3 rounded-lg border px-4 py-3 text-sm ${item.media ? 'border-amber-200 bg-amber-50 text-amber-950' : 'border-red-200 bg-red-50 text-red-900'}`}>
         {item.media ? <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" /> : <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />}
-        <div><p className="font-extrabold">{mediaLabel}</p><p className="mt-1 leading-5">Media present: {item.media ? 'Yes' : 'No'} · Production ready: No. Task 4D has no provenance or approval workflow.</p></div>
+        <div><p className="font-extrabold">{mediaLabel}</p><p className="mt-1 leading-5">Media present: {item.media ? 'Yes' : 'No'} · Production ready: No. No provenance or approval workflow is available in this frontend demo.</p></div>
       </div>
       <MediaUpload
         initialSrc={item.media?.src}

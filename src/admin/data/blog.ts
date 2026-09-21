@@ -106,8 +106,8 @@ export const adminBlogPosts: AdminBlogPost[] = seeds.map((seed) => ({
   sourceReadTime: seed.readTime,
   seo: { title: emptyLocalizedText(), description: emptyLocalizedText() },
   status: 'Published',
-  updatedAt: 'Mock snapshot · 13 Sep 2026',
-  editor: 'Demo administrator',
+  updatedAt: 'Demo snapshot · 13 Sep 2026',
+  editor: 'Demo editor',
   category: seed.category,
   tags: seed.tags,
   featured: Boolean(seed.featured),
@@ -116,7 +116,7 @@ export const adminBlogPosts: AdminBlogPost[] = seeds.map((seed) => ({
 export function createEmptyBlogPost(): AdminBlogPost {
   return {
     id: 'new', slug: '', title: emptyLocalizedText(), excerpt: emptyLocalizedText(), blocks: [], cover: null, coverAlt: emptyLocalizedText(),
-    publicationMonth: '', seo: { title: emptyLocalizedText(), description: emptyLocalizedText() }, status: 'Draft', updatedAt: 'Not saved', editor: 'Demo administrator',
+    publicationMonth: '', seo: { title: emptyLocalizedText(), description: emptyLocalizedText() }, status: 'Draft', updatedAt: 'Not saved', editor: 'Demo editor',
     category: '', tags: [], featured: false,
   };
 }

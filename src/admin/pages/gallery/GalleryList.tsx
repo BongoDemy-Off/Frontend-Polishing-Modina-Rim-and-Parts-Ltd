@@ -36,7 +36,7 @@ export default function GalleryList() {
     { key: 'actions', label: 'Actions', width: '12%', render: actions },
   ];
   return <div className="space-y-6 xl:space-y-8">
-    <PageHeader eyebrow="Gallery Admin · local prototype" title="Gallery" description="Manage isolated mock copies of the current Gallery sequence. Admin search and ordering never change the public Gallery." actions={<Link to="/admin/gallery/new" className={adminButtonClass('primary')}><Plus className="h-4 w-4" aria-hidden="true" /> New Gallery Item</Link>} />
+    <PageHeader eyebrow="Gallery Admin · local prototype" title="Gallery" description="Manage isolated demo copies of the current Gallery sequence. Admin search and ordering never change the public Gallery." actions={<Link to="/admin/gallery/new" className={adminButtonClass('primary')}><Plus className="h-4 w-4" aria-hidden="true" /> New Gallery Item</Link>} />
     <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950"><strong>Media truth:</strong> every seeded image is a current frontend Picsum placeholder, not verified client-owned photography.</div>
     {toast && <DemoToast title="Gallery action simulated" description={toast} tone="warning" onClose={() => setToast(null)} />}
     <SectionCard title="Gallery Collection" description={`${rows.length} of ${items.length} items shown`} action={selected.length ? <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold">{selected.length} selected</span> : undefined}>

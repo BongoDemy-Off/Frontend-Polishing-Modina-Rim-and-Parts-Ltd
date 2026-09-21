@@ -65,7 +65,7 @@ export const adminNavigation: Array<{ section: AdminSection; items: AdminRouteMe
     items: [
       { path: '/admin/contact-messages', title: 'Contact Messages', section: 'Communication', description: 'Website contact enquiries', icon: MessageSquareText },
       { path: '/admin/job-applications', title: 'Job Applications', section: 'Communication', description: 'Applications for open positions', icon: ContactRound },
-      { path: '/admin/newsletter', title: 'Newsletter', section: 'Communication', description: 'Newsletter subscribers and campaigns', icon: Mail },
+      { path: '/admin/newsletter', title: 'Newsletter', section: 'Communication', description: 'Deferred until backend and email integration', icon: Mail },
       { path: '/admin/testimonials', title: 'Testimonials', section: 'Communication', description: 'Customer and partner testimonials', icon: Megaphone },
     ],
   },
@@ -76,7 +76,7 @@ export const adminNavigation: Array<{ section: AdminSection; items: AdminRouteMe
       { path: '/admin/footer', title: 'Footer', section: 'Website', description: 'Footer links and company information', icon: PanelsTopLeft },
       { path: '/admin/contact', title: 'Contact Page', section: 'Website', description: 'Public Contact page content and form copy', icon: ContactRound },
       { path: '/admin/seo', title: 'SEO', section: 'Website', description: 'Search metadata and indexing controls', icon: SearchCheck },
-      { path: '/admin/media', title: 'Media Library', section: 'Website', description: 'Shared website images and documents', icon: Image },
+      { path: '/admin/media', title: 'Media Library', section: 'Website', description: 'Deferred until storage and backend integration', icon: Image },
       { path: '/admin/languages', title: 'Languages', section: 'Website', description: 'English and Bengali content coverage', icon: Languages },
       { path: '/admin/site-settings', title: 'Site Settings', section: 'Website', description: 'Structured global website settings', icon: Settings },
     ],
@@ -97,14 +97,22 @@ export const dashboardMeta = adminRouteMeta[0];
 
 export const foundationMeta: AdminRouteMeta = {
   path: '/admin/foundation',
-  title: 'UI Foundation Preview',
+  title: 'UI Foundation — Internal QA',
   section: 'System',
   description: 'Local-only review of reusable Admin interface patterns',
   icon: Globe2,
 };
 
+export const adminNotFoundMeta: AdminRouteMeta = {
+  path: '/admin/not-found',
+  title: 'Admin Page Not Found',
+  section: 'System',
+  description: 'The requested Admin route does not exist.',
+  icon: FileQuestion,
+};
+
 export function getAdminRouteMeta(pathname: string): AdminRouteMeta {
   if (pathname === '/admin' || pathname === '/admin/') return dashboardMeta;
   if (pathname === foundationMeta.path) return foundationMeta;
-  return adminRouteMeta.find((item) => pathname === item.path || pathname.startsWith(`${item.path}/`)) ?? dashboardMeta;
+  return adminRouteMeta.find((item) => pathname === item.path || pathname.startsWith(`${item.path}/`)) ?? adminNotFoundMeta;
 }

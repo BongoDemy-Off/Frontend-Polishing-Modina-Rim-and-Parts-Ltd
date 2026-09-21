@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Activity, ArrowRight, BriefcaseBusiness, FileText, ImagePlus, Mail, Newspaper, Package, Plus, ShieldCheck } from 'lucide-react';
-import { dashboardMetrics, recentActivity, draftRows, messageRows, applicationRows, certificateRows, type DraftRow, type MessageRow } from '../data/dashboard';
+import { Activity, ArrowRight, BriefcaseBusiness, FileText, Mail, Newspaper, Package, Plus, ShieldAlert, ShieldCheck } from 'lucide-react';
+import { dashboardMetrics, recentActivity, draftRows, messageRows, applicationRows, certificateSummary, type DraftRow, type MessageRow } from '../data/dashboard';
 import { adminButtonClass } from '../ui/Button';
 import { MetricCard, SectionCard } from '../ui/Card';
 import { PageHeader } from '../ui/PageHeader';
@@ -29,15 +29,14 @@ export default function Dashboard() {
       <PageHeader
         eyebrow="Operational overview"
         title="Dashboard"
-        description="A focused preview of the content and communication information future administrators will manage."
-        actions={<Link to="/admin/foundation" className={adminButtonClass('secondary')}>Review UI patterns <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>}
+        description="A frontend demo snapshot derived from the current static Admin records."
       />
 
       <div className="flex items-start gap-3 rounded-xl border border-sky-200 bg-sky-50 px-4 py-3 text-sky-950">
         <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-sky-700" aria-hidden="true" />
         <div className="min-w-0">
-          <p className="text-sm font-extrabold">Demo data — Admin UI foundation only</p>
-          <p className="mt-0.5 text-xs leading-5 text-sky-800">Nothing on this dashboard is live, persisted, authenticated, published, uploaded, or connected to a backend.</p>
+          <p className="text-sm font-extrabold">Frontend demo snapshot</p>
+          <p className="mt-0.5 text-xs leading-5 text-sky-800">Counts come from current static demo records. Changes are not synchronized across routes or saved permanently.</p>
         </div>
       </div>
 
@@ -50,7 +49,7 @@ export default function Dashboard() {
 
       <div className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1.65fr)_minmax(320px,0.85fr)]">
         <div className="min-w-0 space-y-6">
-          <SectionCard title="Recent Activity" description="Illustrative content operations from the mock workspace">
+          <SectionCard title="Recent Activity" description="Illustrative demo entries; no audit history is recorded">
             <ol className="divide-y divide-[var(--admin-border)]">
               {recentActivity.map((item) => (
                 <li key={item.id} className="flex gap-3 px-4 py-4 sm:px-5">
@@ -68,23 +67,22 @@ export default function Dashboard() {
             </ol>
           </SectionCard>
 
-          <SectionCard title="Drafts Awaiting Publication" description="Mock drafts and scheduled content; no publishing action is connected">
+          <SectionCard title="Demo Draft Snapshot" description="Illustrative draft records; no publishing action is connected">
             <ResponsiveDataList rows={draftRows} columns={draftColumns} getPrimaryLabel={(row) => row.title} />
           </SectionCard>
 
-          <SectionCard title="Recent Contact Messages" description="Sample enquiries for future inbox workflow">
+          <SectionCard title="Recent Contact Messages" description="Synthetic records using the Contact Messages status model">
             <ResponsiveDataList rows={messageRows} columns={messageColumns} getPrimaryLabel={(row) => row.subject} />
           </SectionCard>
         </div>
 
         <aside className="min-w-0 space-y-6">
-          <SectionCard title="Quick Actions" description="Links open planned module placeholders">
+          <SectionCard title="Quick Actions" description="Links to existing Admin demo workflows">
             <div className="grid grid-cols-1 gap-2 p-4 min-[420px]:grid-cols-2 xl:grid-cols-1">
               {[
                 { label: 'Add Product', path: '/admin/products/new', icon: Plus },
                 { label: 'New Blog Post', path: '/admin/blog/new', icon: FileText },
                 { label: 'New News Article', path: '/admin/news/new', icon: Newspaper },
-                { label: 'Upload Media', path: '/admin/media', icon: ImagePlus },
               ].map((action) => {
                 const Icon = action.icon;
                 return <Link key={action.label} to={action.path} className={adminButtonClass(action.label === 'Add Product' ? 'primary' : 'secondary', 'justify-start')}><Icon className="h-4 w-4" aria-hidden="true" /> {action.label}</Link>;
@@ -92,16 +90,10 @@ export default function Dashboard() {
             </div>
           </SectionCard>
 
-          <SectionCard title="Certificate Expiry" description="Example renewal visibility">
-            <div className="divide-y divide-[var(--admin-border)]">
-              {certificateRows.map((item) => (
-                <article key={item.id} className="p-4">
-                  <div className="flex items-start gap-3">
-                    <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-[var(--admin-muted)]" aria-hidden="true" />
-                    <div className="min-w-0"><p className="break-words text-sm font-extrabold leading-5 text-[var(--admin-heading)]">{item.name}</p><p className="mt-1 text-xs text-[var(--admin-muted)]">Expires {item.expiry} · {item.remaining}</p><div className="mt-2"><StatusBadge status={item.status} /></div></div>
-                  </div>
-                </article>
-              ))}
+          <SectionCard title="Certificates" description="Current website content snapshot">
+            <div className="space-y-3 p-4">
+              <div className="flex items-start gap-3"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-[var(--admin-muted)]" aria-hidden="true" /><div><p className="text-sm font-extrabold text-[var(--admin-heading)]">{certificateSummary.recordCount} current website records</p><p className="mt-1 text-xs text-[var(--admin-muted)]">{certificateSummary.publishedCount} published as website content</p></div></div>
+              <div className="flex items-start gap-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-950"><ShieldAlert className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" /><p className="text-xs leading-5">Validity and expiry are not independently established. Source review required.</p></div>
             </div>
           </SectionCard>
 

@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react';
+import { useId, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { AlertCircle, CheckCircle2, Languages } from 'lucide-react';
 import { AdminInput, AdminTextarea } from './FormControls';
 import { cn } from '../../lib/utils';
@@ -16,17 +16,29 @@ interface LanguageTabsProps {
 export function LanguageTabs({ language, onLanguageChange, completion, children, ariaLabel = 'Content language' }: LanguageTabsProps) {
   const en = completion?.en ?? { complete: true, label: 'Complete' };
   const bn = completion?.bn ?? { complete: false, label: 'Missing content' };
+  const id = useId();
+  const tabs = useRef<Record<AdminLanguage, HTMLButtonElement | null>>({ en: null, bn: null });
+  const selectTab = (nextLanguage: AdminLanguage) => {
+    onLanguageChange(nextLanguage);
+    tabs.current[nextLanguage]?.focus();
+  };
+  const onTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>, current: AdminLanguage) => {
+    const next = event.key === 'Home' ? 'en' : event.key === 'End' ? 'bn' : event.key === 'ArrowLeft' || event.key === 'ArrowRight' ? (current === 'en' ? 'bn' : 'en') : null;
+    if (!next) return;
+    event.preventDefault();
+    selectTab(next);
+  };
   return (
     <div className="space-y-5">
       <div role="tablist" aria-label={ariaLabel} className="inline-flex w-full rounded-lg border border-[var(--admin-border)] bg-slate-100 p-1 sm:w-auto">
-        <button type="button" role="tab" aria-selected={language === 'en'} onClick={() => onLanguageChange('en')} className={cn('flex min-h-11 flex-1 items-center justify-center gap-2 rounded-md px-4 text-sm font-bold sm:flex-none', language === 'en' ? 'bg-white text-[var(--admin-heading)] shadow-sm' : 'text-[var(--admin-muted)]')}>
+        <button ref={(element) => { tabs.current.en = element; }} id={`${id}-tab-en`} type="button" role="tab" aria-selected={language === 'en'} aria-controls={`${id}-panel`} tabIndex={language === 'en' ? 0 : -1} onKeyDown={(event) => onTabKeyDown(event, 'en')} onClick={() => onLanguageChange('en')} className={cn('flex min-h-11 flex-1 items-center justify-center gap-2 rounded-md px-4 text-sm font-bold sm:flex-none', language === 'en' ? 'bg-white text-[var(--admin-heading)] shadow-sm' : 'text-[var(--admin-muted)]')}>
           {en.complete ? <CheckCircle2 className="h-4 w-4 text-emerald-600" aria-hidden="true" /> : <AlertCircle className="h-4 w-4 text-amber-600" aria-hidden="true" />} English <span className={`hidden text-xs font-medium sm:inline ${en.complete ? 'text-emerald-700' : 'text-amber-700'}`}>{en.label}</span>
         </button>
-        <button type="button" role="tab" aria-selected={language === 'bn'} onClick={() => onLanguageChange('bn')} className={cn('admin-bn-text flex min-h-11 flex-1 items-center justify-center gap-2 rounded-md px-4 text-sm font-bold sm:flex-none', language === 'bn' ? 'bg-white text-[var(--admin-heading)] shadow-sm' : 'text-[var(--admin-muted)]')}>
+        <button ref={(element) => { tabs.current.bn = element; }} id={`${id}-tab-bn`} type="button" role="tab" aria-selected={language === 'bn'} aria-controls={`${id}-panel`} tabIndex={language === 'bn' ? 0 : -1} onKeyDown={(event) => onTabKeyDown(event, 'bn')} onClick={() => onLanguageChange('bn')} className={cn('admin-bn-text flex min-h-11 flex-1 items-center justify-center gap-2 rounded-md px-4 text-sm font-bold sm:flex-none', language === 'bn' ? 'bg-white text-[var(--admin-heading)] shadow-sm' : 'text-[var(--admin-muted)]')}>
           {bn.complete ? <CheckCircle2 className="h-4 w-4 text-emerald-600" aria-hidden="true" /> : <AlertCircle className="h-4 w-4 text-amber-600" aria-hidden="true" />} বাংলা <span className={`hidden text-xs font-medium sm:inline ${bn.complete ? 'text-emerald-700' : 'text-amber-700'}`}>{bn.label}</span>
         </button>
       </div>
-      <div role="tabpanel" className={cn(language === 'bn' && 'admin-bn-text')}>{children}</div>
+      <div id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${language}`} className={cn(language === 'bn' && 'admin-bn-text')}>{children}</div>
     </div>
   );
 }
